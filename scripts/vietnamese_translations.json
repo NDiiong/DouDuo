@@ -623,6 +623,33 @@
       "            feedback = \"Hãy nhập mỗi lần một từ khóa hợp lệ. Chỉ nhập # là chưa đủ\""
     ]
   ],
+  "DouDuo/DYImageXUploader.swift": [
+    [
+      63,
+      "        case .tooLarge: \"图片超过 10MB，抖音不收\"",
+      "        case .tooLarge: \"Douyin không nhận ảnh lớn hơn 10 MB\""
+    ],
+    [
+      64,
+      "        case .empty: \"图片是空的\"",
+      "        case .empty: \"Ảnh trống\""
+    ],
+    [
+      65,
+      "        case .http(let step, let status): \"图片上传失败（\\(step) HTTP \\(status)）\"",
+      "        case .http(let step, let status): \"Không tải được ảnh (\\(step) HTTP \\(status))\""
+    ],
+    [
+      66,
+      "        case .server(let step, let code, let message): \"图片上传失败（\\(step) \\(code)\\(message.isEmpty ? \"\" : \"：\" + message)）\"",
+      "        case .server(let step, let code, let message): \"Không tải được ảnh (\\(step) \\(code)\\(message.isEmpty ? \"\" : \"：\" + message))\""
+    ],
+    [
+      67,
+      "        case .malformed(let step): \"图片上传失败（\\(step) 返回的数据看不懂）\"",
+      "        case .malformed(let step): \"Không tải được ảnh (\\(step): Không đọc được dữ liệu phản hồi)\""
+    ]
+  ],
   "DouDuo/DYLibraryScreens.swift": [
     [
       18,
@@ -2370,6 +2397,51 @@
       94,
       "        guard let s = r as? String, let d = s.data(using: .utf8) else { throw DYError.bad(\"网页评论框没有返回结果\") }",
       "        guard let s = r as? String, let d = s.data(using: .utf8) else { throw DYError.bad(\"Ô bình luận trên web chưa trả về kết quả\") }"
+    ],
+    [
+      186,
+      "    if (window.__ddComposing) return out('busy', 'busy', { msg: '上一条评论还在发送' });",
+      "    if (window.__ddComposing) return out('busy', 'busy', { msg: 'Bình luận trước vẫn đang gửi' });"
+    ],
+    [
+      234,
+      "      if (!document.querySelector('[data-e2e=\"comment-list\"]')) return out('not-ready', 'comment-list', { msg: '网页评论区没加载出来' });",
+      "      if (!document.querySelector('[data-e2e=\"comment-list\"]')) return out('not-ready', 'comment-list', { msg: 'Chưa tải được mục bình luận trên web' });"
+    ],
+    [
+      247,
+      "        if (!item) return out('not-found', 'reply-target', { msg: '网页评论区里没找到要回复的那条' });",
+      "        if (!item) return out('not-found', 'reply-target', { msg: 'Không tìm thấy bình luận cần trả lời trên web' });"
+    ],
+    [
+      253,
+      "        if (!btn) return out('not-found', 'reply-button', { msg: '那条评论没有「回复」' });",
+      "        if (!btn) return out('not-found', 'reply-button', { msg: 'Bình luận này chưa có nút Trả lời' });"
+    ],
+    [
+      261,
+      "      if (!ed) return out('not-ready', 'editor', { msg: '网页评论框没找到' });",
+      "      if (!ed) return out('not-ready', 'editor', { msg: 'Không tìm thấy ô bình luận trên web' });"
+    ],
+    [
+      264,
+      "      if (!setText(ed, text)) return out('compose-error', 'draft', { msg: '网页评论框不接受输入' });",
+      "      if (!setText(ed, text)) return out('compose-error', 'draft', { msg: 'Ô bình luận trên web không nhận nội dung' });"
+    ],
+    [
+      266,
+      "      if (domText(ed) !== text.trim()) { setText(ed, ''); return out('compose-error', 'verify-text', { msg: '网页评论框里的字和要发的不一致' }); }",
+      "      if (domText(ed) !== text.trim()) { setText(ed, ''); return out('compose-error', 'verify-text', { msg: 'Nội dung trong ô bình luận khác nội dung cần gửi' }); }"
+    ],
+    [
+      281,
+      "        return out('unconfirmed', 'ack-timeout', { msg: '已点发送，但没等到抖音回执；可能已发出，先刷新评论区核对' });",
+      "        return out('unconfirmed', 'ack-timeout', { msg: 'Đã bấm gửi nhưng chưa có phản hồi. Hãy làm mới mục bình luận để kiểm tra' });"
+    ],
+    [
+      299,
+      "      return out(started ? 'unconfirmed' : 'compose-error', 'exception', { msg: started ? '已点发送，结果未知' : '网页评论框出错', diagnostic: String(e && e.name) });",
+      "      return out(started ? 'unconfirmed' : 'compose-error', 'exception', { msg: started ? 'Đã bấm gửi, chưa xác nhận kết quả' : 'Ô bình luận trên web gặp lỗi', diagnostic: String(e && e.name) });"
     ]
   ],
   "DouDuo/DouyinBridge+CommentImage.swift": [
@@ -3900,6 +3972,41 @@
       88,
       "            return \"直播网页执行失败，发言结果未确认，请勿连续重发\"",
       "            return \"Trang trực tiếp gặp lỗi và chưa xác nhận đã gửi. Tránh gửi lại nhiều lần\""
+    ],
+    [
+      103,
+      "      if (!box) return fail('loading', '评论区连接中，请等待输入框加载完成');",
+      "      if (!box) return fail('loading', 'Đang kết nối bình luận. Hãy đợi ô nhập tải xong');"
+    ],
+    [
+      104,
+      "      if (box.disabled || box.readOnly || box.getAttribute('aria-disabled') === 'true') return fail('disabled', '直播间暂不能发言，请查看官网限制提示');",
+      "      if (box.disabled || box.readOnly || box.getAttribute('aria-disabled') === 'true') return fail('disabled', 'Tạm thời chưa thể nhắn trong phòng. Hãy xem thông báo giới hạn trên Douyin');"
+    ],
+    [
+      105,
+      "      if (window.__ddLiveSending) return fail('busy', '上一条直播发言仍在确认中，请勿重复提交');",
+      "      if (window.__ddLiveSending) return fail('busy', 'Tin nhắn trước đang chờ xác nhận. Tránh gửi trùng');"
+    ],
+    [
+      133,
+      "      const timer = setTimeout(() => finish({ state: 'unconfirmed', message: '未收到直播平台确认，请先查看聊天记录，勿连续重发' }), 10000);",
+      "      const timer = setTimeout(() => finish({ state: 'unconfirmed', message: 'Douyin chưa xác nhận. Hãy xem lịch sử trò chuyện trước khi gửi lại' }), 10000);"
+    ],
+    [
+      144,
+      "          if (!document.execCommand('insertText', false, text)) return fail('compose-error', '官网编辑器未接受输入，内容已保留');",
+      "          if (!document.execCommand('insertText', false, text)) return fail('compose-error', 'Ô nhập trên Douyin chưa nhận nội dung. Nội dung vẫn được giữ');"
+    ],
+    [
+      148,
+      "        if (actual.replace(/\\u200b/g, '').trim() !== text.trim()) return fail('compose-error', '官网输入内容未同步，已取消提交');",
+      "        if (actual.replace(/\\u200b/g, '').trim() !== text.trim()) return fail('compose-error', 'Nội dung chưa đồng bộ với Douyin. Chưa gửi tin nhắn');"
+    ],
+    [
+      151,
+      "          if (button.disabled || button.getAttribute('aria-disabled') === 'true') return fail('disabled', '直播间暂不能发言，请查看官网限制提示');",
+      "          if (button.disabled || button.getAttribute('aria-disabled') === 'true') return fail('disabled', 'Tạm thời chưa thể nhắn trong phòng. Hãy xem thông báo giới hạn trên Douyin');"
     ]
   ],
   "DouDuo/DouyinLiveRoom.swift": [
@@ -4014,9 +4121,19 @@
       "            categoryHint = \"Chọn danh mục cụ thể trong mục Trò chơi\""
     ],
     [
+      1594,
+      "            if !enter { model.playbackError = DYFollowSelectionFailure.unavailable.message }",
+      "            if !enter { model.playbackError = DYFollowSelectionFailure.unavailable.localizedMessage }"
+    ],
+    [
       1602,
       "                if !enter { model.playbackError = \"抖音未登录\" }",
       "                if !enter { model.playbackError = \"Chưa đăng nhập Douyin\" }"
+    ],
+    [
+      1612,
+      "                model.playbackError = failure.message",
+      "                model.playbackError = failure.localizedMessage"
     ],
     [
       1652,
@@ -4222,6 +4339,16 @@
       2457,
       "                    Button(\"完成\") { dismiss() }.accessibilityIdentifier(\"live.categories.close\")",
       "                    Button(\"Xong\") { dismiss() }.accessibilityIdentifier(\"live.categories.close\")"
+    ],
+    [
+      2548,
+      "            selectionMessage = DYFollowSelectionFailure.unavailable.message",
+      "            selectionMessage = DYFollowSelectionFailure.unavailable.localizedMessage"
+    ],
+    [
+      2574,
+      "            selectionMessage = failure.message",
+      "            selectionMessage = failure.localizedMessage"
     ],
     [
       2666,
@@ -5242,19 +5369,9 @@
   ],
   "DouDuo/FollowLiveLogic.swift": [
     [
-      336,
-      "        case .unavailable: \"这个直播间暂时没有可播放的线路\"",
-      "        case .unavailable: \"Phòng này tạm thời chưa có nguồn phát\""
-    ],
-    [
-      337,
-      "        case .requestFailed: \"直播线路获取失败\"",
-      "        case .requestFailed: \"Không tải được nguồn phát trực tiếp\""
-    ],
-    [
-      338,
-      "        case .decodeFailed: \"直播数据无法解析\"",
-      "        case .decodeFailed: \"Không đọc được dữ liệu phát trực tiếp\""
+      342,
+      "    static func from(kind: DYFollowLiveKind, hasPlayableRoom: Bool) -> DYFollowSelectionFailure? {",
+      "    var localizedMessage: String {\n        switch self {\n        case .unavailable: \"Phòng này tạm thời chưa có nguồn phát\"\n        case .requestFailed: \"Không tải được nguồn phát trực tiếp\"\n        case .decodeFailed: \"Không đọc được dữ liệu phát trực tiếp\"\n        }\n    }\n\n    static func from(kind: DYFollowLiveKind, hasPlayableRoom: Bool) -> DYFollowSelectionFailure? {"
     ]
   ],
   "DouDuo/ShortVideoPlayer.swift": [
