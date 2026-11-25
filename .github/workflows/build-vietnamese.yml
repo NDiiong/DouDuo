@@ -1,61 +1,103 @@
 name: Build DouDuo Vietnamese IPA
+
 on:
   workflow_dispatch:
+    inputs:
+      translation_mode:
+        description: 'Build mode: vietnamese or original (without translation)'
+        required: true
+        default: vietnamese
+        type: choice
+        options:
+          - vietnamese
+          - original
 
 jobs:
   build:
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 90
+    permissions:
+      contents: read
+
     steps:
-      - name: Checkout fork
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Choose Xcode 26
+      - name: Select Xcode 27.2 and inspect SDK
+        shell: bash
         run: |
-          XCODE=$(find /Applications -maxdepth 1 -type d -name 'Xcode_26*.app' | sort -V | tail -1)
-          if [ -n "$XCODE" ]; then sudo xcode-select -s "$XCODE/Contents/Developer"; fi
+          set -euo pipefail
+          if [ -d /Applications/Xcode_27.2.app ]; then
+            sudo xcode-select -s /Applications/Xcode_27.2.app/Contents/Developer
+          fi
           xcodebuild -version
+          xcodebuild -showsdks
+          python3 --version
 
-      - name: Prepare build tools
+      - name: Install XcodeGen
+        shell: bash
         run: |
-          if ! command -v xcodegen >/dev/null 2>&1; then brew install xcodegen; fi
+          set -euo pipefail
+          if ! command -v xcodegen >/dev/null 2>&1; then
+            brew install xcodegen
+          fi
           xcodegen --version
 
-      - name: Apply Vietnamese interface translations
-        run: python3 scripts/vietnamese_patch.py
+      - name: Apply Vietnamese translation (optional)
+        if: ${{ inputs.translation_mode == 'vietnamese' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f scripts/vietnamese_patch.py
+          test -f scripts/vietnamese_translations.json
+          python3 scripts/vietnamese_patch.py
 
-      - name: Fetch VLC dependency
-        run: sh scripts/fetch-vlckit.sh
+      - name: Download VLC framework
+        shell: bash
+        run: |
+          set -euo pipefail
+          sh scripts/fetch-vlckit.sh
 
-      - name: Generate project
-        run: xcodegen generate
+      - name: Generate Xcode project
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodegen generate
 
-      - name: Build unsigned app (save full error log)
+      - name: Build unsigned DouDuo app
         shell: bash
         run: |
           set -o pipefail
-          xcodebuild -project DouDuo.xcodeproj -scheme DouDuo \
-            -configuration Release -sdk iphoneos \
+          xcodebuild \
+            -project DouDuo.xcodeproj \
+            -scheme DouDuo \
+            -configuration Release \
+            -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -derivedDataPath "$RUNNER_TEMP/douduo-derived" \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
             build 2>&1 | tee build.log
 
-      - name: Package IPA
+      - name: Package IPA (unsigned)
+        shell: bash
         run: |
+          set -euo pipefail
           APP="$RUNNER_TEMP/douduo-derived/Build/Products/Release-iphoneos/DouDuo.app"
           test -d "$APP"
           mkdir -p "$RUNNER_TEMP/ipa/Payload"
           ditto "$APP" "$RUNNER_TEMP/ipa/Payload/DouDuo.app"
-          (cd "$RUNNER_TEMP/ipa" && zip -qry "$GITHUB_WORKSPACE/DouDuo-Vietnamese-unsigned.ipa" Payload)
+          (cd "$RUNNER_TEMP/ipa" && zip -qry "$GITHUB_WORKSPACE/DouDuo-${{ inputs.translation_mode }}-unsigned.ipa" Payload)
+          ls -lh "DouDuo-${{ inputs.translation_mode }}-unsigned.ipa"
 
-      - name: Upload IPA and debug logs
+      - name: Export IPA and logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: DouDuo-Vietnamese-results
+          name: DouDuo-${{ inputs.translation_mode }}-results
           path: |
-            DouDuo-Vietnamese-unsigned.ipa
+            DouDuo-*-unsigned.ipa
             vietnamese-report.txt
             build.log
           if-no-files-found: warn
+          retention-days: 7
