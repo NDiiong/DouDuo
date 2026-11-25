@@ -22,23 +22,24 @@ jobs:
           xcodegen --version
 
       - name: Apply Vietnamese interface translations
-        run: |
-          python3 scripts/vietnamese_patch.py
+        run: python3 scripts/vietnamese_patch.py
 
       - name: Fetch VLC dependency
-        run: |
-          sh scripts/fetch-vlckit.sh
+        run: sh scripts/fetch-vlckit.sh
 
       - name: Generate project
         run: xcodegen generate
 
-      - name: Build unsigned app
+      - name: Build unsigned app (save full error log)
+        shell: bash
         run: |
+          set -o pipefail
           xcodebuild -project DouDuo.xcodeproj -scheme DouDuo \
             -configuration Release -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -derivedDataPath "$RUNNER_TEMP/douduo-derived" \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            build 2>&1 | tee build.log
 
       - name: Package IPA
         run: |
@@ -48,7 +49,7 @@ jobs:
           ditto "$APP" "$RUNNER_TEMP/ipa/Payload/DouDuo.app"
           (cd "$RUNNER_TEMP/ipa" && zip -qry "$GITHUB_WORKSPACE/DouDuo-Vietnamese-unsigned.ipa" Payload)
 
-      - name: Upload IPA and translation report
+      - name: Upload IPA and debug logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -56,4 +57,5 @@ jobs:
           path: |
             DouDuo-Vietnamese-unsigned.ipa
             vietnamese-report.txt
+            build.log
           if-no-files-found: warn
