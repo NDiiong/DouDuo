@@ -248,6 +248,11 @@
   ],
   "DouDuo/DYChatComposerModel.swift": [
     [
+      63,
+      "            if deliveryUncertain { error = \"发送结果未确认，请先查看聊天记录。\" }",
+      "            if deliveryUncertain { error = \"Chưa xác nhận đã gửi. Hãy kiểm tra lịch sử trò chuyện trước.\" }"
+    ],
+    [
       136,
       "                self.error = \"草稿未同步，请再次点发送。\"",
       "                self.error = \"Bản nháp chưa đồng bộ. Hãy nhấn gửi lại.\""
@@ -280,6 +285,11 @@
       61,
       "            case .noDelete: \"抖音网页版没有给这条消息删除选项\"",
       "            case .noDelete: \"Bản web Douyin chưa cung cấp tùy chọn xóa tin nhắn này\""
+    ],
+    [
+      62,
+      "            case .scope: \"账号变了，没有删除\"",
+      "            case .scope: \"Tài khoản đã thay đổi. Chưa xóa tin nhắn\""
     ],
     [
       63,
@@ -357,6 +367,11 @@
   ],
   "DouDuo/DYConversationSync.swift": [
     [
+      28,
+      "            return Outcome(status: \"私信加载失败，请稍后重试\")",
+      "            return Outcome(status: \"Không tải được tin nhắn. Hãy thử lại sau\")"
+    ],
+    [
       39,
       "                outcome.status = text.contains(\"验证码登录\") ? \"私信需要登录，请使用网页版 / 登录\" : \"正在加载会话；如无记录可稍后重试\"",
       "                outcome.status = text.contains(\"验证码登录\") ? \"Cần đăng nhập để dùng tin nhắn. Hãy mở Bản web / Đăng nhập\" : \"Đang tải cuộc trò chuyện. Nếu chưa có dữ liệu, hãy thử lại sau\""
@@ -364,9 +379,29 @@
   ],
   "DouDuo/DYDMBanner.swift": [
     [
+      90,
+      "        if kind == 1 { return (name, \"你有新的私信活动\") }",
+      "        if kind == 1 { return (name, \"Bạn có hoạt động tin nhắn mới\") }"
+    ],
+    [
+      91,
+      "        if kind == 2 { return (name, \"群聊有新的私信活动\") }",
+      "        if kind == 2 { return (name, \"Nhóm chat có hoạt động mới\") }"
+    ],
+    [
       105,
       "    static let genericTitle = \"有新消息\"",
       "    static let genericTitle = \"Có tin nhắn mới\""
+    ],
+    [
+      106,
+      "    static let singleMessage = \"你有新的私信活动\"",
+      "    static let singleMessage = \"Bạn có hoạt động tin nhắn mới\""
+    ],
+    [
+      107,
+      "    static let manyMessage = \"有多条新的私信活动\"",
+      "    static let manyMessage = \"Có nhiều hoạt động tin nhắn mới\""
     ],
     [
       362,
@@ -571,6 +606,21 @@
       102,
       "                        Button(\"完成\") { dismiss() }",
       "                        Button(\"Xong\") { dismiss() }"
+    ],
+    [
+      132,
+      "            feedback = \"已添加，推荐页将屏蔽标题或标签含此词的视频\"",
+      "            feedback = \"Đã thêm. Mục Đề xuất sẽ ẩn video có từ này trong tiêu đề hoặc hashtag\""
+    ],
+    [
+      134,
+      "            feedback = \"这个词已在屏蔽列表中\"",
+      "            feedback = \"Từ này đã có trong danh sách chặn\""
+    ],
+    [
+      136,
+      "            feedback = \"请输入一个有效的词，不要只输入 # 或一次输入多个词\"",
+      "            feedback = \"Hãy nhập mỗi lần một từ khóa hợp lệ. Chỉ nhập # là chưa đủ\""
     ]
   ],
   "DouDuo/DYLibraryScreens.swift": [
@@ -1058,6 +1108,11 @@
       "            Button(\"Hủy\", role: .cancel) {}"
     ],
     [
+      94,
+      "            let quantity = count < requested ? \"剩余 \\(DYFormat.count(count)) 条下载名额\" : \"\\(DYFormat.count(count)) 条视频\"",
+      "            let quantity = count < requested ? \"Còn chỗ tải \\(DYFormat.count(count)) video\" : \"\\(DYFormat.count(count)) video\""
+    ],
+    [
       95,
       "            Text(\"\\(quantity)，预计占用 \\(DYOfflineDownloads.estimatedSize(for: count))。\")",
       "            Text(\"\\(quantity), dự kiến chiếm \\(DYOfflineDownloads.estimatedSize(for: count)).\")"
@@ -1093,6 +1148,11 @@
       "            Button(\"Hủy\", role: .cancel) {}"
     ],
     [
+      108,
+      "        let savedCount = \"\\(DYFormat.count(downloads.savedCount)) 条\"",
+      "        let savedCount = \"\\(DYFormat.count(downloads.savedCount)) video\""
+    ],
+    [
       114,
       "                    Text(\"离线视频\")",
       "                    Text(\"Video ngoại tuyến\")"
@@ -1116,6 +1176,16 @@
       206,
       "        if downloads.preparing { return \"正在准备下载\" }",
       "        if downloads.preparing { return \"Đang chuẩn bị tải\" }"
+    ],
+    [
+      207,
+      "        return downloads.remainingCapacity > 0 ? \"下载\" : \"已达下载上限\"",
+      "        return downloads.remainingCapacity > 0 ? \"Tải xuống\" : \"Đã đạt giới hạn tải xuống\""
+    ],
+    [
+      222,
+      "        guard let progress = downloads.progress else { return downloads.preparing ? \"正在准备下载\" : \"\" }",
+      "        guard let progress = downloads.progress else { return downloads.preparing ? \"Đang chuẩn bị tải\" : \"\" }"
     ],
     [
       223,
@@ -1148,6 +1218,11 @@
       185,
       "                finish(Result(title: \"没有可下载的视频\", message: \"推荐更新后可以再试。\", success: false))",
       "                finish(Result(title: \"Không có video để tải\", message: \"Hãy thử lại sau khi mục đề xuất được cập nhật.\", success: false))"
+    ],
+    [
+      220,
+      "        let countText = \"已保存 \\(DYFormat.count(successes)) 条离线视频\"",
+      "        let countText = \"Đã lưu \\(DYFormat.count(successes)) video ngoại tuyến\""
     ],
     [
       223,
@@ -1212,7 +1287,19 @@
       "        Label(\"Video ngoại tuyến\", systemImage: \"airplane\")"
     ]
   ],
+  "DouDuo/DYPagingSpeed.swift": [
+    [
+      10,
+      "        switch self { case .standard: \"标准（系统）\"; case .fast: \"快速\"; case .faster: \"更快\" }",
+      "        switch self { case .standard: \"Chuẩn (hệ thống)\"; case .fast: \"Nhanh\"; case .faster: \"Nhanh hơn\" }"
+    ]
+  ],
   "DouDuo/DYPassportVerify.swift": [
+    [
+      46,
+      "        guard current == nil, let top = topController() else { return .failed(\"当前无法弹出身份验证页\") }",
+      "        guard current == nil, let top = topController() else { return .failed(\"Chưa mở được trang xác minh danh tính\") }"
+    ],
     [
       131,
       "            title.text = \"抖音要求身份验证\"",
@@ -1232,6 +1319,11 @@
       181,
       "                finish(.failed(\"身份验证页没有返回结果\")); return",
       "                finish(.failed(\"Trang xác minh chưa trả về kết quả\")); return"
+    ],
+    [
+      185,
+      "            else { finish(.failed(j[\"msg\"] as? String ?? \"身份验证未通过\")) }",
+      "            else { finish(.failed(j[\"msg\"] as? String ?? \"Xác minh danh tính thất bại\")) }"
     ]
   ],
   "DouDuo/DYPhotoViewer.swift": [
@@ -1239,6 +1331,11 @@
       86,
       "        closeButton.accessibilityLabel = \"关闭\"",
       "        closeButton.accessibilityLabel = \"Đóng\""
+    ],
+    [
+      266,
+      "                let l = UILabel(); l.text = \"图片加载失败\"; l.textColor = .white; l.sizeToFit()",
+      "                let l = UILabel(); l.text = \"Không tải được ảnh\"; l.textColor = .white; l.sizeToFit()"
     ]
   ],
   "DouDuo/DYProductPill.swift": [
@@ -1251,6 +1348,18 @@
       49,
       "        .accessibilityLabel(\"商品：\\(product.title)\")",
       "        .accessibilityLabel(\"Sản phẩm: \\(product.title)\")"
+    ],
+    [
+      55,
+      "        n >= 10_000 ? String(format: \"%.1f万\", Double(n) / 10_000) : String(n)",
+      "        n >= 10_000 ? String(format: \"%.1f vạn\", Double(n) / 10_000) : String(n)"
+    ]
+  ],
+  "DouDuo/DYPublicationRegion.swift": [
+    [
+      25,
+      "        let parts = [original, showRegion ? \"发布地：\" + (place ?? \"未知\") : nil].compactMap { $0 }",
+      "        let parts = [original, showRegion ? \"Nơi đăng: \" + (place ?? \"Không rõ\") : nil].compactMap { $0 }"
     ]
   ],
   "DouDuo/DYRecommendFeedHost.swift": [
@@ -1427,6 +1536,16 @@
       204,
       "        .accessibilityValue(item.hot > 0 ? \"热度 \\(heat)\" : \"\")",
       "        .accessibilityValue(item.hot > 0 ? \"Độ phổ biến \\(heat)\" : \"\")"
+    ],
+    [
+      214,
+      "        if item.hot >= 100_000_000 { return String(format: \"%.1f亿\", Double(item.hot) / 100_000_000) }",
+      "        if item.hot >= 100_000_000 { return String(format: \"%.1f trăm triệu\", Double(item.hot) / 100_000_000) }"
+    ],
+    [
+      215,
+      "        if item.hot >= 10_000 { return String(format: \"%.1f万\", Double(item.hot) / 10_000) }",
+      "        if item.hot >= 10_000 { return String(format: \"%.1f vạn\", Double(item.hot) / 10_000) }"
     ]
   ],
   "DouDuo/DYSessionGuard.swift": [
@@ -1452,6 +1571,11 @@
     ]
   ],
   "DouDuo/DYSettingsScreen.swift": [
+    [
+      51,
+      "    private static let cacheChoices: [(Int, String)] = [(1, \"1 条\"), (5, \"5 条\"), (10, \"10 条\")]",
+      "    private static let cacheChoices: [(Int, String)] = [(1, \"1 video\"), (5, \"5 video\"), (10, \"10 video\")]"
+    ],
     [
       59,
       "                    Picker(\"外观\", selection: $appearance) {",
@@ -1965,6 +2089,16 @@
   ],
   "DouDuo/DYShareLink.swift": [
     [
+      12,
+      "        return \"\\(head)\\(item.webURL.absoluteString) 复制此链接，打开抖音搜索，直接观看视频！\"",
+      "        return \"\\(head)\\(item.webURL.absoluteString) Sao chép liên kết này rồi mở Douyin để tìm và xem video!\""
+    ],
+    [
+      109,
+      "            let title = item.desc.isEmpty ? \"分享的视频\" : item.desc",
+      "            let title = item.desc.isEmpty ? \"Video được chia sẻ\" : item.desc"
+    ],
+    [
       146,
       "        let alert = UIAlertController(title: \"打不开这条链接\", message: message, preferredStyle: .alert)",
       "        let alert = UIAlertController(title: \"Không mở được liên kết này\", message: message, preferredStyle: .alert)"
@@ -1987,6 +2121,11 @@
       27,
       "                    storageRow(\"App 大小\", bytes: usage.app, total: usage.total, color: DYStorageRing.appColor)",
       "                    storageRow(\"Kích thước ứng dụng\", bytes: usage.app, total: usage.total, color: DYStorageRing.appColor)"
+    ],
+    [
+      35,
+      "                                        LabeledContent(area.rawValue, value: size(bytes))",
+      "                                        let title = switch area {\n                                        case .documents: \"Tài liệu\"\n                                        case .appSupport: \"Dữ liệu ứng dụng cục bộ\"\n                                        case .caches: \"Bộ nhớ đệm khác\"\n                                        case .preferences: \"Tùy chọn\"\n                                        case .temporary: \"Tệp tạm\"\n                                        case .library: \"Tệp thư viện khác\"\n                                        }\n                                        LabeledContent(title, value: size(bytes))"
     ],
     [
       47,
@@ -2059,9 +2198,34 @@
       "                Text(clearing ? \"Đang dọn…\" : \"Xóa bộ nhớ đệm\")"
     ],
     [
+      239,
+      "        case .video: \"视频缓存\"",
+      "        case .video: \"Bộ nhớ đệm video\""
+    ],
+    [
+      240,
+      "        case .offline: \"离线视频\"",
+      "        case .offline: \"Video ngoại tuyến\""
+    ],
+    [
       241,
       "        case .images: \"消息预览\"",
       "        case .images: \"Xem trước tin nhắn\""
+    ],
+    [
+      242,
+      "        case .web: \"网页数据\"",
+      "        case .web: \"Dữ liệu web\""
+    ],
+    [
+      243,
+      "        case .diagnostics: \"诊断日志\"",
+      "        case .diagnostics: \"Nhật ký chẩn đoán\""
+    ],
+    [
+      244,
+      "        case .other: \"其他 App 数据\"",
+      "        case .other: \"Dữ liệu ứng dụng khác\""
     ]
   ],
   "DouDuo/DYStreakBadge.swift": [
@@ -2130,6 +2294,13 @@
       "        switch v { case 0: \"Tắt\"; case 45: \"Sáng\"; case 60: \"Vừa\"; case 70: \"Tối\"; default: \"Rất tối\" }"
     ]
   ],
+  "DouDuo/DYVideoFit.swift": [
+    [
+      8,
+      "    static let title = \"铺满宽度\"",
+      "    static let title = \"Lấp đầy chiều rộng\""
+    ]
+  ],
   "DouDuo/DYVideoMoreMenu.swift": [
     [
       21,
@@ -2194,7 +2365,117 @@
       "        .accessibilityValue(selected ? \"Bật\" : \"Tắt\")"
     ]
   ],
+  "DouDuo/DYWebComposer.swift": [
+    [
+      94,
+      "        guard let s = r as? String, let d = s.data(using: .utf8) else { throw DYError.bad(\"网页评论框没有返回结果\") }",
+      "        guard let s = r as? String, let d = s.data(using: .utf8) else { throw DYError.bad(\"Ô bình luận trên web chưa trả về kết quả\") }"
+    ]
+  ],
+  "DouDuo/DouyinBridge+CommentImage.swift": [
+    [
+      71,
+      "        if r.code == 8 { throw DYError.bad(\"抖音未登录：登录后才能发图片评论\") }",
+      "        if r.code == 8 { throw DYError.bad(\"Hãy đăng nhập Douyin để gửi bình luận có ảnh\") }"
+    ],
+    [
+      76,
+      "        else { throw DYError.bad(r.msg?.isEmpty == false ? r.msg! : \"抖音没给图片上传凭证（\\(r.code ?? -1)）\") }",
+      "        else { throw DYError.bad(r.msg?.isEmpty == false ? r.msg! : \"Douyin chưa cấp thông tin xác thực để tải ảnh (\\(r.code ?? -1) )\") }"
+    ]
+  ],
+  "DouDuo/DouyinBridge+Library.swift": [
+    [
+      98,
+      "        if let c = p.code, c != 0 { throw DYError.bad(p.msg?.isEmpty == false ? p.msg! : \"抖音返回 \\(c)\") }",
+      "        if let c = p.code, c != 0 { throw DYError.bad(p.msg?.isEmpty == false ? p.msg! : \"Douyin trả mã \\(c)\") }"
+    ],
+    [
+      243,
+      "        guard r.status == 200, r.code == 0, let t = r.text, !t.isEmpty else { throw DYError.bad(r.msg ?? \"翻译失败\") }",
+      "        guard r.status == 200, r.code == 0, let t = r.text, !t.isEmpty else { throw DYError.bad(r.msg ?? \"Dịch thất bại\") }"
+    ],
+    [
+      251,
+      "        guard r.status == 200, r.code == 0, let t = r.text, !t.isEmpty else { throw DYError.bad(r.msg ?? \"翻译失败\") }",
+      "        guard r.status == 200, r.code == 0, let t = r.text, !t.isEmpty else { throw DYError.bad(r.msg ?? \"Dịch thất bại\") }"
+    ],
+    [
+      259,
+      "        guard r.status == 200, let t = r.text, t.hasPrefix(\"http\") else { throw DYError.bad(r.msg ?? \"短链生成失败\") }",
+      "        guard r.status == 200, let t = r.text, t.hasPrefix(\"http\") else { throw DYError.bad(r.msg ?? \"Không tạo được liên kết ngắn\") }"
+    ],
+    [
+      470,
+      "        case .delete: \"删除\"",
+      "        case .delete: \"Xóa\""
+    ],
+    [
+      471,
+      "        case .makePublic: \"设为公开\"",
+      "        case .makePublic: \"Đặt công khai\""
+    ],
+    [
+      472,
+      "        case .makePrivate: \"设为私密\"",
+      "        case .makePrivate: \"Đặt riêng tư\""
+    ],
+    [
+      473,
+      "        case .friendsOnly: \"仅好友可见\"",
+      "        case .friendsOnly: \"Chỉ bạn bè được xem\""
+    ]
+  ],
+  "DouDuo/DouyinBridge+Manage.swift": [
+    [
+      23,
+      "        guard let code = r.statusCode else { return .failed(\"抖音没有回执，可能被拦下了\") }",
+      "        guard let code = r.statusCode else { return .failed(\"Douyin chưa phản hồi. Thao tác có thể đã bị chặn\") }"
+    ],
+    [
+      25,
+      "        return .failed(r.msg?.isEmpty == false ? r.msg! : \"抖音返回 \\(code)\")",
+      "        return .failed(r.msg?.isEmpty == false ? r.msg! : \"Douyin trả mã \\(code)\")"
+    ],
+    [
+      39,
+      "        if r.status == 200, r.statusCode == 4 { return .failed(\"稍后再看已达上限\") }",
+      "        if r.status == 200, r.statusCode == 4 { return .failed(\"Danh sách Xem sau đã đầy\") }"
+    ],
+    [
+      62,
+      "        guard r.blockStatus == (block ? 1 : 0) else { return .failed(\"抖音没有确认，请到对方主页核对\") }",
+      "        guard r.blockStatus == (block ? 1 : 0) else { return .failed(\"Douyin chưa xác nhận. Hãy mở trang cá nhân của người đó để kiểm tra\") }"
+    ]
+  ],
+  "DouDuo/DouyinBridge+More.swift": [
+    [
+      150,
+      "            throw DYError.bad(p.msg?.isEmpty == false ? p.msg! : \"打不开这条视频\")",
+      "            throw DYError.bad(p.msg?.isEmpty == false ? p.msg! : \"Không mở được video này\")"
+    ],
+    [
+      183,
+      "        guard let uid, !uid.isEmpty else { return \"暂时无法获取作者信息\" }",
+      "        guard let uid, !uid.isEmpty else { return \"Tạm thời không lấy được thông tin tác giả\" }"
+    ],
+    [
+      191,
+      "            return \"关注失败：\" + message",
+      "            return \"Theo dõi thất bại: \" + message"
+    ]
+  ],
   "DouDuo/DouyinExpandableTitle.swift": [
+    [
+      13,
+      "    static let expandSuffix = \"\\u{2060}…\\u{00a0}展\\u{2060}开\"",
+      "    static let expandSuffix = \"\\u{2060}…\\u{00a0}Mở\\u{2060} rộng\""
+    ],
+    [
+      109,
+      "            var action = AttributedString(expanded ? \"  收起\" : DYCaptionText.expandSuffix)",
+      "            var action = AttributedString(expanded ? \"  Thu gọn\" : DYCaptionText.expandSuffix)"
+    ],
     [
       177,
       "            .accessibilityLabel(\"关闭简介\")",
@@ -2273,6 +2554,26 @@
       "        case .later: \"Xem sau\""
     ],
     [
+      130,
+      "            throw DYError.bad(p.status == -2 || p.status == -3 ? \"搜索请求超时，请稍后重试\" : \"搜索连接失败，请稍后重试\")",
+      "            throw DYError.bad(p.status == -2 || p.status == -3 ? \"Tìm kiếm quá thời gian chờ. Hãy thử lại sau\" : \"Không kết nối được để tìm kiếm. Hãy thử lại sau\")"
+    ],
+    [
+      134,
+      "            let message = p.msg.flatMap { $0.isEmpty ? nil : $0 } ?? \"搜索暂不可用（\\(code)）\"",
+      "            let message = p.msg.flatMap { $0.isEmpty ? nil : $0 } ?? \"Tạm thời không tìm kiếm được (\\(code))\""
+    ],
+    [
+      153,
+      "        if r.status < 0 { throw DYError.bad(\"读取账号资料超时或网络不通，请稍后重试\") }",
+      "        if r.status < 0 { throw DYError.bad(\"Đọc hồ sơ quá thời gian chờ hoặc mất kết nối. Hãy thử lại sau\") }"
+    ],
+    [
+      164,
+      "        guard let u = r.user else { throw DYError.bad(r.msg ?? \"读取作者信息失败\") }",
+      "        guard let u = r.user else { throw DYError.bad(r.msg ?? \"Không đọc được thông tin tác giả\") }"
+    ],
+    [
       320,
       "            throw DYCommentUnconfirmed(message: \"抖音回了成功但没给评论编号；先刷新评论区核对\")",
       "            throw DYCommentUnconfirmed(message: \"Douyin báo thành công nhưng chưa trả mã bình luận. Hãy làm mới bình luận để kiểm tra\")"
@@ -2296,6 +2597,21 @@
       375,
       "            throw DYError.bad(\"评论签名页尚未就绪，未发送；草稿已保留\")",
       "            throw DYError.bad(\"Trang gửi bình luận chưa sẵn sàng. Bản nháp vẫn được giữ\")"
+    ],
+    [
+      392,
+      "                    throw DYError.bad(\"验证通过了，但抖音仍要求验证，这条没发出去；草稿已保留，稍后再试\")",
+      "                    throw DYError.bad(\"Đã xác minh nhưng Douyin vẫn yêu cầu xác minh. Bình luận chưa được gửi. Bản nháp vẫn được giữ\")"
+    ],
+    [
+      395,
+      "                throw DYError.bad(\"已取消身份验证，这条没发出去；草稿已保留\")",
+      "                throw DYError.bad(\"Đã hủy xác minh. Bình luận chưa được gửi và bản nháp vẫn được giữ\")"
+    ],
+    [
+      397,
+      "                throw DYError.bad(\"身份验证没完成（\\(why)），这条没发出去；草稿已保留\")",
+      "                throw DYError.bad(\"Chưa xác minh xong (\\(why)). Bình luận chưa được gửi và bản nháp vẫn được giữ\")"
     ],
     [
       411,
@@ -2323,6 +2639,11 @@
       "        throw DYCommentUnconfirmed(message: \"Chưa xác nhận kết quả. Bình luận có thể đã gửi, hãy làm mới để kiểm tra\")"
     ],
     [
+      549,
+      "            throw DYError.bad(r.msg?.isEmpty == false ? r.msg! : \"发送失败（HTTP \\(r.status) / \\(r.code ?? -1)）\")",
+      "            throw DYError.bad(r.msg?.isEmpty == false ? r.msg! : \"Gửi thất bại (HTTP \\(r.status) / \\(r.code ?? -1))\")"
+    ],
+    [
       864,
       "            switch self { case .sparse: \"稀疏\"; case .standard: \"标准\"; case .dense: \"密集\" }",
       "            switch self { case .sparse: \"Thưa\"; case .standard: \"Tiêu chuẩn\"; case .dense: \"Dày\" }"
@@ -2336,6 +2657,11 @@
       1037,
       "            case .noURL: \"这条没有可下载的地址\"",
       "            case .noURL: \"Không có địa chỉ tải cho nội dung này\""
+    ],
+    [
+      1076,
+      "        if let h = resp as? HTTPURLResponse, h.statusCode >= 400 { throw DYError.bad(\"下载失败 HTTP \\(h.statusCode)\") }",
+      "        if let h = resp as? HTTPURLResponse, h.statusCode >= 400 { throw DYError.bad(\"Tải thất bại, HTTP \\(h.statusCode)\") }"
     ],
     [
       1161,
@@ -2358,6 +2684,11 @@
       "                        .accessibilityLabel(showsPlayCount ? \"Lượt xem \\(a.stats.play.map(String.init) ?? \"Không rõ\")\" : \"Lượt thích \\(a.stats.digg)\")"
     ],
     [
+      1527,
+      "        guard allowsOnlineActions else { show(\"联网后可用\"); return false }",
+      "        guard allowsOnlineActions else { show(\"Cần kết nối mạng để sử dụng\"); return false }"
+    ],
+    [
       1536,
       "        else { show(\"这个离线视频无法播放\") }",
       "        else { show(\"Không phát được video ngoại tuyến này\") }"
@@ -2366,6 +2697,11 @@
       1587,
       "            show(r.map { if case .notLoggedIn = $0 { return \"抖音未登录\" } else { return \"点赞失败\" } } ?? \"点赞失败\")",
       "            show(r.map { if case .notLoggedIn = $0 { return \"Chưa đăng nhập Douyin\" } else { return \"Không thích được\" } } ?? \"Không thích được\")"
+    ],
+    [
+      1598,
+      "                if want { DYCollectPrompt.shared.show(id, owner: .list) } else { show(\"已取消收藏\") }",
+      "                if want { DYCollectPrompt.shared.show(id, owner: .list) } else { show(\"Đã bỏ lưu\") }"
     ],
     [
       1602,
@@ -2553,6 +2889,11 @@
       "            case .notLoggedIn: manageMsg = \"Chưa đăng nhập Douyin\""
     ],
     [
+      2350,
+      "            case .failed(let why): manageMsg = \"\\(b.button)失败：\" + why",
+      "            case .failed(let why): manageMsg = \"\\(b.button) thất bại: \" + why"
+    ],
+    [
       2352,
       "        } catch { manageMsg = \"\\(b.button)失败：\" + error.localizedDescription }",
       "        } catch { manageMsg = \"\\(b.button) thất bại: \" + error.localizedDescription }"
@@ -2621,6 +2962,11 @@
       2608,
       "            DYListPlayer(bridge: bridge, title: author.name.isEmpty ? \"作品\" : author.name, playback: p.playback,",
       "            DYListPlayer(bridge: bridge, title: author.name.isEmpty ? \"Bài đăng\" : author.name, playback: p.playback,"
+    ],
+    [
+      2612,
+      "            guard let s = author.secUid else { err = \"没有作者信息\"; hasMore = false; return }",
+      "            guard let s = author.secUid else { err = \"Không có thông tin tác giả\"; hasMore = false; return }"
     ],
     [
       2664,
@@ -2725,6 +3071,51 @@
       "        if age < 604800 { return \"\\(Int(age / 86400)) ngày trước\" }"
     ],
     [
+      102,
+      "        return formatter.string(from: Date(timeIntervalSince1970: publishedAt)) + \" 发布\"",
+      "        return formatter.string(from: Date(timeIntervalSince1970: publishedAt)) + \" đã đăng\""
+    ],
+    [
+      106,
+      "        let parts = [isAd == true ? \"广告\" : nil, publicationText(now: now), aiDeclaration?.trimmingCharacters(in: .whitespacesAndNewlines)]",
+      "        let parts = [isAd == true ? \"Quảng cáo\" : nil, publicationText(now: now), aiDeclaration?.trimmingCharacters(in: .whitespacesAndNewlines)]"
+    ],
+    [
+      255,
+      "        case .notReady: \"抖音页面还没加载好\"",
+      "        case .notReady: \"Trang Douyin chưa tải xong\""
+    ],
+    [
+      256,
+      "        case .blocked(let m): \"抖音拦截了请求（\\(m)），在「网页版」里过一下验证或登录后重试\"",
+      "        case .blocked(let m): \"Douyin chặn yêu cầu (\\(m)). Hãy xác minh hoặc đăng nhập trên bản web rồi thử lại\""
+    ],
+    [
+      530,
+      "                guard let s = r as? String, let d = s.data(using: .utf8) else { throw DYError.bad(\"返回为空\") }",
+      "                guard let s = r as? String, let d = s.data(using: .utf8) else { throw DYError.bad(\"Phản hồi trống\") }"
+    ],
+    [
+      781,
+      "            throw DYError.bad(\"直播数据无法解析\")",
+      "            throw DYError.bad(\"Không đọc được dữ liệu phát trực tiếp\")"
+    ],
+    [
+      783,
+      "            throw DYError.blocked(result.status == 200 ? \"连接失败\" : \"HTTP \\(result.status)\")",
+      "            throw DYError.blocked(result.status == 200 ? \"Kết nối thất bại\" : \"HTTP \\(result.status)\")"
+    ],
+    [
+      919,
+      "                throw DYError.bad(\"专区连接失败（HTTP \\(p.status)），可打开网页版检查或返回推荐直播\")",
+      "                throw DYError.bad(\"Không kết nối được danh mục (HTTP \\(p.status)). Hãy mở bản web để kiểm tra hoặc quay lại mục trực tiếp đề xuất\")"
+    ],
+    [
+      1669,
+      "            error = items.isEmpty ? \"暂时没有符合屏蔽关键词条件的推荐\" : nil",
+      "            error = items.isEmpty ? \"Chưa có đề xuất phù hợp bộ lọc từ khóa\" : nil"
+    ],
+    [
       1701,
       "                ? \"暂时没刷到推荐，登录后或稍后再试\" : \"暂时没有符合屏蔽关键词条件的推荐，可调整屏蔽关键词或稍后重试\") : nil",
       "                ? \"Chưa có đề xuất. Hãy đăng nhập hoặc thử lại sau\" : \"Chưa có đề xuất phù hợp bộ lọc. Hãy đổi từ khóa chặn hoặc thử lại sau\") : nil"
@@ -2798,6 +3189,11 @@
       2675,
       "                        Text(bridge.ready ? \"加载推荐…\" : \"连接抖音…\").font(.footnote)",
       "                        Text(bridge.ready ? \"Đang tải đề xuất…\" : \"Đang kết nối với Douyin…\").font(.footnote)"
+    ],
+    [
+      2731,
+      "    private func rateTitle(_ r: Double) -> String { r == 1 ? \"正常速度\" : String(format: \"%g 倍速\", r) }",
+      "    private func rateTitle(_ r: Double) -> String { r == 1 ? \"Tốc độ bình thường\" : String(format: \"%g×\", r) }"
     ],
     [
       2839,
@@ -2940,6 +3336,11 @@
       "                        onToast?(autoFit ? \"Đã bật lấp đầy màn hình\" : \"Hiện toàn bộ khung hình\")"
     ],
     [
+      4354,
+      "    private func rateTitle(_ r: Double) -> String { r == 1 ? \"正常速度\" : String(format: \"%g 倍速\", r) }",
+      "    private func rateTitle(_ r: Double) -> String { r == 1 ? \"Tốc độ bình thường\" : String(format: \"%g×\", r) }"
+    ],
+    [
       4362,
       "                    Button(\"复制链接\", systemImage: \"link\") {",
       "                    Button(\"Sao chép liên kết\", systemImage: \"link\") {"
@@ -3033,6 +3434,11 @@
       4848,
       "        .accessibilityLabel((id == \"douyin.like\" ? \"点赞\" : id == \"douyin.comments\" ? \"评论\" : id == \"douyin.collect\" ? \"收藏\" : \"分享\") + \"，\" + text)",
       "        .accessibilityLabel((id == \"douyin.like\" ? \"Thích\" : id == \"douyin.comments\" ? \"Bình luận\" : id == \"douyin.collect\" ? \"Đã lưu\" : \"Chia sẻ\") + \"，\" + text)"
+    ],
+    [
+      4873,
+      "        if n >= 100_000_000 { return String(format: \"%.1f亿\", Double(n) / 1e8) }",
+      "        if n >= 100_000_000 { return String(format: \"%.1f trăm triệu\", Double(n) / 1e8) }"
     ],
     [
       4879,
@@ -3215,9 +3621,24 @@
       "            sendErr = \"Không dùng được ảnh này vì định dạng không hỗ trợ hoặc tệp quá lớn\""
     ],
     [
+      5688,
+      "        let local = DYComment(id: localID, text: text, name: myName ?? \"我\", avatar: myAvatar, digg: 0,",
+      "        let local = DYComment(id: localID, text: text, name: myName ?? \"Tôi\", avatar: myAvatar, digg: 0,"
+    ],
+    [
       5699,
       "    static let waitSignText = \"等待签名完成才可以发送评论\"",
       "    static let waitSignText = \"Đang chuẩn bị gửi bình luận\""
+    ],
+    [
+      5700,
+      "    static let signDoneText = \"签名完成，现在可以发送了\"",
+      "    static let signDoneText = \"Đã sẵn sàng. Bạn có thể gửi bình luận\""
+    ],
+    [
+      5732,
+      "                    catch { throw DYError.bad(\"图片没传上去：\\(error.localizedDescription)\") }",
+      "                    catch { throw DYError.bad(\"Chưa tải được ảnh: \\(error.localizedDescription)\") }"
     ],
     [
       5743,
@@ -3355,6 +3776,11 @@
       "                    self.showToast(\"Không lưu được: \\(error.localizedDescription)\")"
     ],
     [
+      6403,
+      "    static let refreshingToast = \"正在刷新视频…\"",
+      "    static let refreshingToast = \"Đang làm mới video…\""
+    ],
+    [
       6493,
       "        if let left { return \"等待签名完成才可以发送评论，约 \\(left) 秒后再点发送\" }",
       "        if let left { return \"Đang chuẩn bị gửi bình luận. Hãy gửi lại sau khoảng \\(left) giây\" }"
@@ -3397,6 +3823,11 @@
       "                    .accessibilityLabel(\"Đang tải danh bạ chia sẻ\")"
     ],
     [
+      185,
+      "        return loading ? \"正在加载分享联系人…\" : \"暂无可分享的联系人\"",
+      "        return loading ? \"Đang tải danh bạ chia sẻ…\" : \"Chưa có người liên hệ để chia sẻ\""
+    ],
+    [
       288,
       "            Text(\"分享给\")",
       "            Text(\"Chia sẻ với\")"
@@ -3425,6 +3856,11 @@
       390,
       "                    .accessibilityLabel(\"正在加载分享联系人\")",
       "                    .accessibilityLabel(\"Đang tải danh bạ chia sẻ\")"
+    ],
+    [
+      402,
+      "        return loading ? \"正在加载分享联系人…\" : \"暂无可分享的联系人\"",
+      "        return loading ? \"Đang tải danh bạ chia sẻ…\" : \"Chưa có người liên hệ để chia sẻ\""
     ]
   ],
   "DouDuo/DouyinLiveAmbientBackground.swift": [
@@ -3498,6 +3934,56 @@
       "            playbackError = \"Không kết nối được. Hãy thử lại hoặc vuốt lên để đổi phòng\"; ready = false; vlc.stop(); return"
     ],
     [
+      960,
+      "    .init(id: \"featured\", name: \"精选\", kind: .featured),",
+      "    .init(id: \"featured\", name: \"Nổi bật\", kind: .featured),"
+    ],
+    [
+      961,
+      "    .init(id: \"game\", name: \"游戏\", kind: .gameZones),",
+      "    .init(id: \"game\", name: \"Trò chơi\", kind: .gameZones),"
+    ],
+    [
+      962,
+      "    .init(id: \"chat\", name: \"聊天\", kind: .partition(.init(id: \"101\", type: \"4\", name: \"聊天\"))),",
+      "    .init(id: \"chat\", name: \"Trò chuyện\", kind: .partition(.init(id: \"101\", type: \"4\", name: \"聊天\"))),"
+    ],
+    [
+      963,
+      "    .init(id: \"music\", name: \"音乐\", kind: .partition(.init(id: \"102\", type: \"4\", name: \"音乐\"))),",
+      "    .init(id: \"music\", name: \"Âm nhạc\", kind: .partition(.init(id: \"102\", type: \"4\", name: \"音乐\"))),"
+    ],
+    [
+      964,
+      "    .init(id: \"anime\", name: \"二次元\", kind: .partition(.init(id: \"104\", type: \"4\", name: \"二次元\"))),",
+      "    .init(id: \"anime\", name: \"Anime\", kind: .partition(.init(id: \"104\", type: \"4\", name: \"二次元\"))),"
+    ],
+    [
+      965,
+      "    .init(id: \"dance\", name: \"舞蹈\", kind: .partition(.init(id: \"105\", type: \"4\", name: \"舞蹈\"))),",
+      "    .init(id: \"dance\", name: \"Vũ đạo\", kind: .partition(.init(id: \"105\", type: \"4\", name: \"舞蹈\"))),"
+    ],
+    [
+      966,
+      "    .init(id: \"culture\", name: \"文化\", kind: .partition(.init(id: \"106\", type: \"4\", name: \"文化\"))),",
+      "    .init(id: \"culture\", name: \"Văn hóa\", kind: .partition(.init(id: \"106\", type: \"4\", name: \"文化\"))),"
+    ],
+    [
+      967,
+      "    .init(id: \"life\", name: \"生活\", kind: .partition(.init(id: \"107\", type: \"4\", name: \"生活\"))),",
+      "    .init(id: \"life\", name: \"Đời sống\", kind: .partition(.init(id: \"107\", type: \"4\", name: \"生活\"))),"
+    ],
+    [
+      968,
+      "    .init(id: \"exercise\", name: \"运动\", kind: .partition(.init(id: \"108\", type: \"4\", name: \"运动\"))),",
+      "    .init(id: \"exercise\", name: \"Thể thao\", kind: .partition(.init(id: \"108\", type: \"4\", name: \"运动\"))),"
+    ],
+    [
+      1302,
+      "                    categoryHint = \"已切到「\\(z.name)」专区\"",
+      "                    categoryHint = \"Đã chuyển sang mục “\\(z.name)”\""
+    ],
+    [
       1422,
       "            Text(restoring ? \"分屏\" : \"整屏\")",
       "            Text(restoring ? \"Chia màn hình\" : \"Toàn màn hình\")"
@@ -3521,6 +4007,11 @@
       1537,
       "                        .accessibilityValue(selectedCategory == c.id ? \"已选择\" : \"未选择\")",
       "                        .accessibilityValue(selectedCategory == c.id ? \"Đã chọn\" : \"Chưa chọn\")"
+    ],
+    [
+      1556,
+      "            categoryHint = \"「游戏」下可选具体专区\"",
+      "            categoryHint = \"Chọn danh mục cụ thể trong mục Trò chơi\""
     ],
     [
       1602,
@@ -3556,6 +4047,11 @@
       1719,
       "                Button(\"重试\") { Task { await model.loadFollowLive(bridge, refresh: true) } }",
       "                Button(\"Thử lại\") { Task { await model.loadFollowLive(bridge, refresh: true) } }"
+    ],
+    [
+      1729,
+      "        case .notLoggedIn: \"登录后才能看到关注的直播\"",
+      "        case .notLoggedIn: \"Đăng nhập để xem buổi trực tiếp của người bạn theo dõi\""
     ],
     [
       1730,
@@ -3788,6 +4284,11 @@
       "                                        Text(\"\\(room.viewers) đang xem\")"
     ],
     [
+      2780,
+      "        let name = room.owner.isEmpty ? \"未命名主播\" : room.owner",
+      "        let name = room.owner.isEmpty ? \"Chủ phòng chưa có tên\" : room.owner"
+    ],
+    [
       2781,
       "        if room.viewers.isEmpty { return \"\\(name)，直播中\" }",
       "        if room.viewers.isEmpty { return \"\\(name), đang phát trực tiếp\" }"
@@ -3858,6 +4359,11 @@
       503,
       "        case .all, .system: return \"全部互动\"",
       "        case .all, .system: return \"Tất cả tương tác\""
+    ],
+    [
+      608,
+      "    @State private var chatStatus = \"正在加载私信…\"",
+      "    @State private var chatStatus = \"Đang tải tin nhắn…\""
     ],
     [
       704,
@@ -4000,6 +4506,11 @@
       "        guard let box = strangerConversations.first else { return \"Tin nhắn từ người lạ\" }"
     ],
     [
+      1175,
+      "        return box.preview.isEmpty ? \"非好友发来的私信\" : box.preview",
+      "        return box.preview.isEmpty ? \"Tin nhắn từ người lạ\" : box.preview"
+    ],
+    [
       1196,
       "                .accessibilityValue(row.isPinned == true ? \"已置顶\" : \"\")",
       "                .accessibilityValue(row.isPinned == true ? \"Đã ghim\" : \"\")"
@@ -4048,6 +4559,21 @@
       1286,
       "        Button(\"更多\", systemImage: \"ellipsis\") { showChatOptions = true }",
       "        Button(\"Thêm\", systemImage: \"ellipsis\") { showChatOptions = true }"
+    ],
+    [
+      1333,
+      "            chatStatus = \"私信页面还没准备好，请稍后再试\"",
+      "            chatStatus = \"Trang tin nhắn chưa sẵn sàng. Hãy thử lại sau\""
+    ],
+    [
+      1378,
+      "            chatStatus = \"私信页面还没加载好，请稍后重试\"",
+      "            chatStatus = \"Trang tin nhắn chưa tải xong. Hãy thử lại sau\""
+    ],
+    [
+      1382,
+      "            chatStatus = \"会话位置已变化，正在刷新，请再点一次\"",
+      "            chatStatus = \"Vị trí cuộc trò chuyện đã thay đổi. Đang làm mới, hãy chạm lại\""
     ],
     [
       1404,
@@ -4195,6 +4721,16 @@
       "            replyErr = \"Douyin đã chặn phản hồi vì cần xác minh hoặc đang giới hạn tạm thời. Phiên đăng nhập và bản nháp vẫn được giữ. Hãy chọn cách khôi phục\""
     ],
     [
+      2229,
+      "            replyErr = e.message + \"，草稿已保留，勿连续重发\"",
+      "            replyErr = e.message + \". Bản nháp vẫn được giữ. Tránh gửi lại nhiều lần\""
+    ],
+    [
+      2231,
+      "            replyErr = \"发送失败：\\(error.localizedDescription)\"",
+      "            replyErr = \"Gửi thất bại: \\(error.localizedDescription)\""
+    ],
+    [
       2252,
       "                Button(\"重试\") { Task { await reload(reset: true) } }.buttonStyle(.bordered)",
       "                Button(\"Thử lại\") { Task { await reload(reset: true) } }.buttonStyle(.bordered)"
@@ -4320,9 +4856,29 @@
       "    @State private var status = \"Đang tải tin nhắn từ người lạ…\""
     ],
     [
+      3109,
+      "        guard let web = cache.chatModel.web else { status = \"私信页面还没加载好\"; return }",
+      "        guard let web = cache.chatModel.web else { status = \"Trang tin nhắn chưa tải xong\"; return }"
+    ],
+    [
+      3112,
+      "            status = \"私信页面还没加载好，请稍后重试\"; return",
+      "            status = \"Trang tin nhắn chưa tải xong. Hãy thử lại sau\"; return"
+    ],
+    [
       3117,
       "        if rows.isEmpty { status = \"暂无陌生人消息\" }",
       "        if rows.isEmpty { status = \"Chưa có tin nhắn từ người lạ\" }"
+    ],
+    [
+      3136,
+      "        case .notReady: status = \"私信页面还没加载好，请稍后重试\"",
+      "        case .notReady: status = \"Trang tin nhắn chưa tải xong. Hãy thử lại sau\""
+    ],
+    [
+      3138,
+      "            status = \"这条会话位置变了，已刷新列表，请再点一次\"",
+      "            status = \"Vị trí cuộc trò chuyện đã thay đổi. Đã làm mới danh sách, hãy chạm lại\""
     ],
     [
       3194,
@@ -4380,6 +4936,21 @@
       "        else if !model.loading && model.contacts.isEmpty { result.append(.init(id: \"retry\", title: \"Tải lại\", symbol: \"arrow.clockwise\")) }"
     ],
     [
+      3218,
+      "                                 ? (accountPrepared ? (model.sendIssue ?? (selected != nil && !model.sending ? \"\" : saveMessage ?? (copiedLink ? \"链接已复制\" : model.message))) : \"正在加载朋友…\")",
+      "                                 ? (accountPrepared ? (model.sendIssue ?? (selected != nil && !model.sending ? \"\" : saveMessage ?? (copiedLink ? \"Đã sao chép liên kết\" : model.message))) : \"Đang tải bạn bè…\")"
+    ],
+    [
+      3219,
+      "                                 : (saveMessage ?? (copiedLink ? \"链接已复制\" : \"联网后可私信分享\")),",
+      "                                 : (saveMessage ?? (copiedLink ? \"Đã sao chép liên kết\" : \"Kết nối mạng để chia sẻ qua tin nhắn\")),"
+    ],
+    [
+      3244,
+      "                                     status: accountPrepared ? (model.sendIssue ?? (selected != nil && !model.sending ? \"\" : model.message)) : \"正在恢复朋友缓存…\", actions: accountPrepared ? actions : [],",
+      "                                     status: accountPrepared ? (model.sendIssue ?? (selected != nil && !model.sending ? \"\" : model.message)) : \"Đang khôi phục danh sách bạn bè đã lưu tạm…\", actions: accountPrepared ? actions : [],"
+    ],
+    [
       3301,
       "                                Text(\"我的群聊\").foregroundStyle(.themeTextPrimary)",
       "                                Text(\"Nhóm chat của tôi\").foregroundStyle(.themeTextPrimary)"
@@ -4405,9 +4976,34 @@
       "                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"Đóng\") { showContacts = false } } }"
     ],
     [
+      3378,
+      "        case \"copy\": DYCopyVideoLink.copy(item); saveMessage = nil; copiedLink = true; if !usesClassicLayout { model.message = \"链接已复制\" }",
+      "        case \"copy\": DYCopyVideoLink.copy(item); saveMessage = nil; copiedLink = true; if !usesClassicLayout { model.message = \"Đã sao chép liên kết\" }"
+    ],
+    [
+      3388,
+      "                    if !usesClassicLayout { model.message = \"短链已复制\" }",
+      "                    if !usesClassicLayout { model.message = \"Đã sao chép liên kết ngắn\" }"
+    ],
+    [
+      3390,
+      "                    saveMessage = \"短链生成失败，已改为复制长链接\"",
+      "                    saveMessage = \"Không tạo được liên kết ngắn. Đã sao chép liên kết dài\""
+    ],
+    [
+      3397,
+      "            saveMessage = \"正在保存…\"",
+      "            saveMessage = \"Đang lưu…\""
+    ],
+    [
       3402,
       "                    saveMessage = item.images.isEmpty ? \"视频已保存到相册\" : \"图集已保存到相册\"",
       "                    saveMessage = item.images.isEmpty ? \"Đã lưu video vào thư viện ảnh\" : \"Đã lưu bộ ảnh vào thư viện ảnh\""
+    ],
+    [
+      3403,
+      "                } catch { saveMessage = \"保存失败：\\(error.localizedDescription)\" }",
+      "                } catch { saveMessage = \"Lưu thất bại: \\(error.localizedDescription)\" }"
     ],
     [
       3437,
@@ -4425,6 +5021,21 @@
       "                    Button(model.fullPage ? \"Quay lại chia sẻ\" : \"Mở trang web đầy đủ\") { model.toggleFullPage() }"
     ],
     [
+      3460,
+      "    @Published var message = \"正在打开抖音官方分享面板…\"",
+      "    @Published var message = \"Đang mở bảng chia sẻ của Douyin…\""
+    ],
+    [
+      3511,
+      "        message = cache.hasContactsSnapshot ? \"已恢复朋友缓存，后台同步变化\" : \"正在加载分享联系人…\"",
+      "        message = cache.hasContactsSnapshot ? \"Đã khôi phục bạn bè đã lưu tạm và đang đồng bộ\" : \"Đang tải danh bạ chia sẻ…\""
+    ],
+    [
+      3544,
+      "        sending = true; message = \"正在准备转发…\"",
+      "        sending = true; message = \"Đang chuẩn bị chuyển tiếp…\""
+    ],
+    [
       3547,
       "        guard DYMessageCache.shared.accountScope == account else { message = \"登录账号已变化，尚未发送，请重新打开分享\"; return nil }",
       "        guard DYMessageCache.shared.accountScope == account else { message = \"Tài khoản đã thay đổi. Chưa gửi nội dung. Hãy mở lại mục chia sẻ\"; return nil }"
@@ -4435,9 +5046,24 @@
       "        guard readyForSend else { message = loginRequired ? \"Hãy đăng nhập Douyin trước. Chưa gửi nội dung\" : \"Tính năng chia sẻ chưa sẵn sàng. Chưa gửi nội dung. Hãy thử lại sau\"; return nil }"
     ],
     [
+      3566,
+      "        message = \"正在发送，请稍候…可关闭面板\"",
+      "        message = \"Đang gửi. Bạn có thể đóng bảng này\""
+    ],
+    [
+      3582,
+      "                    message = \"分享成功\"",
+      "                    message = \"Đã chia sẻ\""
+    ],
+    [
       3585,
       "                message = \"发送未确认，请到抖音消息核对，勿重复发送\"",
       "                message = \"Chưa xác nhận đã gửi. Hãy kiểm tra tin nhắn Douyin và tránh gửi trùng\""
+    ],
+    [
+      3586,
+      "            case \"note-unavailable\": message = \"捎句话暂不可用，尚未发送，请稍后重试或清空附言\"",
+      "            case \"note-unavailable\": message = \"Chưa gửi nội dung vì tính năng lời nhắn tạm thời không dùng được. Hãy thử lại hoặc xóa lời nhắn\""
     ],
     [
       3587,
@@ -4455,6 +5081,11 @@
       "            case \"rejected\": message = \"Douyin chưa chấp nhận yêu cầu chia sẻ. Hãy kiểm tra tin nhắn\""
     ],
     [
+      3590,
+      "            case \"not-ready\", \"wrong-work\", \"missing-recipient\": message = \"当前作品或朋友列表已变化，请重新打开转发\"",
+      "            case \"not-ready\", \"wrong-work\", \"missing-recipient\": message = \"Bài đăng hoặc danh sách bạn bè đã thay đổi. Hãy mở lại mục chia sẻ\""
+    ],
+    [
       3591,
       "            default: message = \"发送未确认，请到抖音消息核对，勿重复发送\"",
       "            default: message = \"Chưa xác nhận đã gửi. Hãy kiểm tra tin nhắn Douyin và tránh gửi trùng\""
@@ -4465,14 +5096,54 @@
       "            message = \"Chưa xác nhận đã gửi. Hãy kiểm tra tin nhắn Douyin và tránh gửi trùng\""
     ],
     [
+      3612,
+      "        message = \"已取消，尚未发送\"",
+      "        message = \"Đã hủy. Chưa gửi nội dung\""
+    ],
+    [
+      3634,
+      "        message = contacts.isEmpty ? \"官网加载失败，请关闭后重试\" : \"已显示朋友缓存，后台同步暂时失败\"",
+      "        message = contacts.isEmpty ? \"Không tải được trang Douyin. Hãy đóng rồi thử lại\" : \"Đang hiện danh sách bạn bè đã lưu tạm. Tạm thời chưa đồng bộ được\""
+    ],
+    [
+      3641,
+      "            message = \"抖音官网：请核对朋友后再发送\"",
+      "            message = \"Trang Douyin: Hãy kiểm tra người nhận trước khi gửi\""
+    ],
+    [
+      3650,
+      "        if !sending { message = nativeOnly && !contacts.isEmpty ? \"已显示朋友缓存，后台同步变化\" : nativeOnly ? \"正在加载分享联系人…\" : \"正在打开抖音官方分享面板…\" }",
+      "        if !sending { message = nativeOnly && !contacts.isEmpty ? \"Đang hiện danh sách bạn bè đã lưu tạm và đang đồng bộ\" : nativeOnly ? \"Đang tải danh bạ chia sẻ…\" : \"Đang mở bảng chia sẻ của Douyin…\" }"
+    ],
+    [
       3664,
       "                            self.message = self.contacts.isEmpty ? \"登录抖音后显示可转发的朋友\" : \"已显示朋友缓存，登录抖音后可转发\"",
       "                            self.message = self.contacts.isEmpty ? \"Đăng nhập Douyin để xem bạn bè có thể nhận chia sẻ\" : \"Đang hiển thị bạn bè đã lưu tạm. Đăng nhập Douyin để chia sẻ\""
     ],
     [
+      3681,
+      "                            if !self.sending { self.message = self.contacts.isEmpty ? \"官网暂无可读取的分享联系人\" : \"选择朋友转发当前作品\" }",
+      "                            if !self.sending { self.message = self.contacts.isEmpty ? \"Chưa đọc được danh bạ chia sẻ trên Douyin\" : \"Chọn bạn bè để chia sẻ bài đăng\" }"
+    ],
+    [
+      3690,
+      "                        self.message = state == \"login\" ? \"请先在下方登录抖音，再选择朋友\" : \"使用抖音官方分享面板；请核对朋友后再发送\"",
+      "                        self.message = state == \"login\" ? \"Hãy đăng nhập Douyin bên dưới rồi chọn bạn bè\" : \"Đang dùng bảng chia sẻ của Douyin. Hãy kiểm tra người nhận trước khi gửi\""
+    ],
+    [
+      3703,
+      "            self.message = self.nativeOnly ? (self.contacts.isEmpty ? \"朋友同步暂未就绪，请稍后重试\" : \"已显示朋友缓存，后台同步暂未完成\") : \"暂未打开官网分享面板，可点“完整官网”手动打开\"",
+      "            self.message = self.nativeOnly ? (self.contacts.isEmpty ? \"Chưa đồng bộ xong bạn bè. Hãy thử lại sau\" : \"Đang hiện danh sách bạn bè đã lưu tạm. Đồng bộ chưa hoàn tất\") : \"Chưa mở được bảng chia sẻ. Chọn Mở trang web đầy đủ để mở thủ công\""
+    ],
+    [
       4019,
       "            Label(\"转发\", systemImage: \"arrowshape.turn.up.right\")",
       "            Label(\"Chuyển tiếp\", systemImage: \"arrowshape.turn.up.right\")"
+    ],
+    [
+      4076,
+      "        f.placeholder = \"搜索\"",
+      "        f.placeholder = \"Tìm kiếm\""
     ]
   ],
   "DouDuo/DouyinRelations.swift": [
@@ -4530,6 +5201,11 @@
       231,
       "        } message: { Text(removeMsg ?? \"请稍后重试\") }",
       "        } message: { Text(removeMsg ?? \"Vui lòng thử lại sau\") }"
+    ],
+    [
+      253,
+      "            case .notLoggedIn: removeMsg = \"抖音未登录\"",
+      "            case .notLoggedIn: removeMsg = \"Chưa đăng nhập Douyin\""
     ]
   ],
   "DouDuo/DouyinWebView.swift": [
@@ -4591,6 +5267,16 @@
       694,
       "                    .accessibilityValue(\"\\(Int(cur.isFinite ? cur : 0)) / \\(Int(duration.isFinite ? duration : 0)) 秒\")",
       "                    .accessibilityValue(\"\\(Int(cur.isFinite ? cur : 0)) / \\(Int(duration.isFinite ? duration : 0)) giây\")"
+    ],
+    [
+      1103,
+      "            detail = lockedBoost ? \"上滑取消倍速\" : \"下滑锁定倍速\"",
+      "            detail = lockedBoost ? \"Vuốt lên để hủy tăng tốc\" : \"Vuốt xuống để khóa tốc độ\""
+    ],
+    [
+      1105,
+      "            detail = lockedBoost ? \"已锁定本条 · 长按上滑取消\" : nil",
+      "            detail = lockedBoost ? \"Đã khóa tốc độ cho video này · Nhấn giữ rồi vuốt lên để hủy\" : nil"
     ]
   ],
   "project.yml": [
