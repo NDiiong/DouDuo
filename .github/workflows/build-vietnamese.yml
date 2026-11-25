@@ -17,7 +17,7 @@ jobs:
     runs-on: xcode-27
     timeout-minutes: 90
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -101,3 +101,26 @@ jobs:
             build.log
           if-no-files-found: warn
           retention-days: 7
+
+      - name: Publish Vietnamese IPA to GitHub Releases
+        if: ${{ success() && inputs.translation_mode == 'vietnamese' }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          IPA="DouDuo-vietnamese-unsigned.ipa"
+          test -s "$IPA"
+          TAG="douduo-vi-${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}"
+          cat > release-notes.md <<EOF
+          Bản Việt hóa thử nghiệm, IPA chưa ký để nhập vào LiveContainer. Một số nhãn có thể còn tiếng Trung.
+
+          Mã nguồn: $GITHUB_SHA
+          Workflow: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          EOF
+          gh release create "$TAG" "$IPA" \
+            --target "$GITHUB_SHA" \
+            --title "DouDuo Vietnamese (build ${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT})" \
+            --notes-file release-notes.md \
+            --prerelease
