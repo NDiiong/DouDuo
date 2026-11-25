@@ -1,41 +1,46 @@
-"""Starter Vietnamese translation patch for DouDuo SwiftUI labels.
-
-Only replaces exact Chinese literals in UI contexts. Does not attempt to
-translate network payloads, API field names or all dynamically generated text.
-Edit vietnamese_translations.json to expand coverage, then run GitHub Actions.
-"""
 import json
-import pathlib
 import re
+from pathlib import Path
 
-root = pathlib.Path(__file__).resolve().parents[1]
-translations = json.loads((root / 'scripts/vietnamese_translations.json').read_text(encoding='utf-8'))
-# SwiftUI UI entry points (deliberately scoped to avoid changing API keys).
-ui = r'(?:Text|Label|Button|Toggle|Section|TextField|SecureField|Picker|Menu|NavigationLink|ContentUnavailableView|ProgressView|LabeledContent|GroupBox|ShareLink|Link|navigationTitle|accessibilityLabel|accessibilityHint|alert|confirmationDialog)'
-pattern = re.compile(r'(?P<head>\b' + ui + r'\s*\(\s*)"(?P<value>(?:\\.|[^"\\])*)"')
-chinese = re.compile(r'[\u3400-\u9fff]')
-changed = 0
-remaining = set()
-scanned = 0
-for file in (root / 'DouDuo').rglob('*.swift'):
-    source = file.read_text(encoding='utf-8')
-    scanned += 1
-    def patch(m):
-        global changed
-        s = m.group('value')
-        if chinese.search(s):
-            if s in translations:
-                changed += 1
-                replacement = translations[s].replace('\\', r'\\').replace('"', r'\"')
-                return m.group('head') + '"' + replacement + '"'
-            remaining.add(s)
-        return m.group(0)
-    output = pattern.sub(patch, source)
-    if source != output:
-        file.write_text(output, encoding='utf-8')
-report = [f'Swift files scanned: {scanned}', f'UI labels replaced: {changed}',
-          f'Untranslated UI labels found: {len(remaining)}', '',
-          'Add exact Chinese text below to scripts/vietnamese_translations.json:', '']
-report.extend(sorted(remaining))
-(root / 'vietnamese-report.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
-print('\n'.join(report[:4]))
+
+root = Path(__file__).resolve().parents[1]
+manifest = json.loads((root / "scripts/vietnamese_translations.json").read_text(encoding="utf-8"))
+report_path = root / "vietnamese-report.txt"
+han = re.compile(r"[\u3400-\u9fff]")
+translated_sources = {}
+
+for name, edits in manifest.items():
+    path = root / name
+    if name != "project.yml" and not path.is_relative_to(root / "DouDuo"):
+        raise SystemExit(f"Không hỗ trợ tệp dịch: {name}")
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    for number, original, replacement in edits:
+        if not 1 <= number <= len(lines) or lines[number - 1].rstrip("\n") != original:
+            error = f"{name}:{number} không khớp mã nguồn đã rà soát."
+            report_path.write_text(error + "\n", encoding="utf-8")
+            raise SystemExit(error)
+        ending = "\n" if lines[number - 1].endswith("\n") else ""
+        lines[number - 1] = replacement + ending
+    translated_sources[path] = "".join(lines)
+
+for path, translated in translated_sources.items():
+    path.write_text(translated, encoding="utf-8")
+
+report = [
+    f"Dòng mã đã cập nhật: {sum(len(edits) for edits in manifest.values())}",
+    f"Tệp đã cập nhật: {len(manifest)}",
+    "",
+    "Các dòng có chữ Hán trong Swift và cấu hình quyền sau khi áp dụng patch.",
+    "Danh sách gồm cả chuỗi giao diện, mã tích hợp, giá trị lưu trữ và dữ liệu mẫu.",
+    "",
+]
+for path in sorted((root / "DouDuo").rglob("*.swift")) + [root / "project.yml"]:
+    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        value = line.strip()
+        if value.startswith(("//", "/*", "*", "#")):
+            continue
+        if han.search(value):
+            report.append(f"{path.relative_to(root)}:{number} | {value}")
+
+report_path.write_text("\n".join(report) + "\n", encoding="utf-8")
+print("\n".join(report[:2]))
