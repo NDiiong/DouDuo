@@ -19,9 +19,24 @@ jobs:
     permissions:
       contents: write
 
+    defaults:
+      run:
+        working-directory: ${{ inputs.translation_mode == 'original' && 'upstream' || '.' }}
+
     steps:
-      - name: Checkout repository
+      - name: Checkout fork
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Checkout pinned upstream
+        if: ${{ inputs.translation_mode == 'original' }}
+        uses: actions/checkout@v4
+        with:
+          repository: 81199000/DouDuo
+          ref: 2bd2b2c8c16b6b2848c5266e109e051343d1fe05
+          path: upstream
+          persist-credentials: false
 
       - name: Select Xcode 27.2 and inspect SDK
         shell: bash
@@ -30,7 +45,9 @@ jobs:
           if [ -d /Applications/Xcode_27.2.app ]; then
             sudo xcode-select -s /Applications/Xcode_27.2.app/Contents/Developer
           fi
-          xcodebuild -version
+          version="$(xcodebuild -version)"
+          printf '%s\n' "$version"
+          test "$(printf '%s\n' "$version" | head -n 1)" = "Xcode 27.2"
           xcodebuild -showsdks
           python3 --version
 
@@ -67,7 +84,7 @@ jobs:
       - name: Build unsigned DouDuo app
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
           xcodebuild \
             -project DouDuo.xcodeproj \
             -scheme DouDuo \
@@ -77,18 +94,14 @@ jobs:
             -derivedDataPath "$RUNNER_TEMP/douduo-derived" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            build 2>&1 | tee build.log
+            build 2>&1 | tee "$GITHUB_WORKSPACE/build.log"
 
       - name: Package IPA (unsigned)
         shell: bash
         run: |
           set -euo pipefail
           APP="$RUNNER_TEMP/douduo-derived/Build/Products/Release-iphoneos/DouDuo.app"
-          test -d "$APP"
-          mkdir -p "$RUNNER_TEMP/ipa/Payload"
-          ditto "$APP" "$RUNNER_TEMP/ipa/Payload/DouDuo.app"
-          (cd "$RUNNER_TEMP/ipa" && zip -qry "$GITHUB_WORKSPACE/DouDuo-${{ inputs.translation_mode }}-unsigned.ipa" Payload)
-          ls -lh "DouDuo-${{ inputs.translation_mode }}-unsigned.ipa"
+          python3 scripts/package_unsigned.py "$APP" "$GITHUB_WORKSPACE/delivery" 2>&1 | tee "$GITHUB_WORKSPACE/package.log"
 
       - name: Export IPA and logs
         if: always()
@@ -96,7 +109,9 @@ jobs:
         with:
           name: DouDuo-${{ inputs.translation_mode }}-results
           path: |
-            DouDuo-*-unsigned.ipa
+            delivery/*.ipa
+            delivery/*.ipa.sha256
+            package.log
             vietnamese-report.txt
             build.log
           if-no-files-found: warn
@@ -110,8 +125,11 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
-          IPA="DouDuo-vietnamese-unsigned.ipa"
+          set -- delivery/*-unsigned.ipa
+          test "$#" -eq 1
+          IPA="$1"
           test -s "$IPA"
+          test -s "$IPA.sha256"
           TAG="douduo-vi-${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}"
           cat > release-notes.md <<EOF
           Bản Việt hóa thử nghiệm, IPA chưa ký để nhập vào LiveContainer. Một số nhãn có thể còn tiếng Trung.
@@ -119,7 +137,7 @@ jobs:
           Mã nguồn: $GITHUB_SHA
           Workflow: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
           EOF
-          gh release create "$TAG" "$IPA" \
+          gh release create "$TAG" "$IPA" "$IPA.sha256" \
             --target "$GITHUB_SHA" \
             --title "DouDuo Vietnamese (build ${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT})" \
             --notes-file release-notes.md \
