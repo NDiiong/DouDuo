@@ -52,6 +52,11 @@
   ],
   "DouDuo/DYAccounts.swift": [
     [
+      255,
+      "                                else { failed = \"「\\(a.name)」的登录已失效，请移除后重新添加\" }",
+      "                                else { failed = \"“\\(a.name)” đã hết phiên đăng nhập. Hãy xóa rồi thêm lại\" }"
+    ],
+    [
       260,
       "                            Button(\"移除\", role: .destructive) { removing = a }",
       "                            Button(\"Xóa khỏi danh sách\", role: .destructive) { removing = a }"
@@ -197,6 +202,11 @@
       146,
       "                ProgressView(\"正在取二维码…\").frame(height: 240)",
       "                ProgressView(\"Đang lấy mã QR…\").frame(height: 240)"
+    ],
+    [
+      399,
+      "            message = \"没登录上，请重新获取验证码再试\"",
+      "            message = \"Đăng nhập thất bại. Hãy yêu cầu mã xác minh mới rồi thử lại\""
     ]
   ],
   "DouDuo/DYChatComposer.swift": [
@@ -260,6 +270,23 @@
       "                    .accessibilityLabel(\"Trang cá nhân của \\(row.name)\")"
     ]
   ],
+  "DouDuo/DYChatMessageBridge.swift": [
+    [
+      60,
+      "            case .gone: \"这条消息已经不在页面上了，请重新长按\"",
+      "            case .gone: \"Tin nhắn đã rời khỏi trang. Hãy nhấn giữ lại\""
+    ],
+    [
+      61,
+      "            case .noDelete: \"抖音网页版没有给这条消息删除选项\"",
+      "            case .noDelete: \"Bản web Douyin chưa cung cấp tùy chọn xóa tin nhắn này\""
+    ],
+    [
+      63,
+      "            case .unconfirmed: \"已经点了删除，但没看到消息消失，请回到聊天里核对\"",
+      "            case .unconfirmed: \"Đã chọn xóa nhưng tin nhắn vẫn còn. Hãy quay lại cuộc trò chuyện để kiểm tra\""
+    ]
+  ],
   "DouDuo/DYChatOptionsPopover.swift": [
     [
       20,
@@ -280,6 +307,11 @@
       59,
       "                            Button(\"重试\") { Task { await reload() } }.padding(.bottom, 16)",
       "                            Button(\"Thử lại\") { Task { await reload() } }.padding(.bottom, 16)"
+    ],
+    [
+      89,
+      "            if options.isEmpty { error = \"暂时无法读取聊天设置，请重试。\" }",
+      "            if options.isEmpty { error = \"Tạm thời không đọc được cài đặt trò chuyện. Hãy thử lại.\" }"
     ],
     [
       91,
@@ -332,6 +364,11 @@
   ],
   "DouDuo/DYDMBanner.swift": [
     [
+      105,
+      "    static let genericTitle = \"有新消息\"",
+      "    static let genericTitle = \"Có tin nhắn mới\""
+    ],
+    [
       362,
       "                               identifier: \"douyin.offline.banner\", hint: \"关闭提示\") {",
       "                               identifier: \"douyin.offline.banner\", hint: \"Đóng thông báo\") {"
@@ -345,6 +382,11 @@
       519,
       "    var message: String = \"你有新的私信活动\"",
       "    var message: String = \"Bạn có hoạt động tin nhắn mới\""
+    ],
+    [
+      524,
+      "    var hint = \"打开消息\"",
+      "    var hint = \"Mở tin nhắn\""
     ]
   ],
   "DouDuo/DYDanmakuInput.swift": [
@@ -1128,6 +1170,16 @@
       "                             message: \"Đã lưu \\(DYFormat.count(successes)) video, lỗi \\(DYFormat.count(failures)) video\", success: false)"
     ],
     [
+      232,
+      "                message = \"\\(countText)，离线视频预计可播放 \\(duration)\"",
+      "                message = \"\\(countText), thời lượng ước tính \\(duration)\""
+    ],
+    [
+      234,
+      "                message = \"\\(countText)，断网可在推荐页播放\"",
+      "                message = \"\\(countText), có thể phát ngoại tuyến trong mục Đề xuất\""
+    ],
+    [
       236,
       "            summary = Result(title: \"离线视频下载完成\", message: message, success: true)",
       "            summary = Result(title: \"Đã tải xong video ngoại tuyến\", message: message, success: true)"
@@ -1265,6 +1317,11 @@
   ],
   "DouDuo/DYRelogin.swift": [
     [
+      5,
+      "    var errorDescription: String? { \"抖音拦下了这次评论（需要验证或暂时受限）；登录和草稿已保留\" }",
+      "    var errorDescription: String? { \"Douyin chặn bình luận vì cần xác minh hoặc đang giới hạn tạm thời. Phiên đăng nhập và bản nháp vẫn được giữ\" }"
+    ],
+    [
       44,
       "    @State private var message = \"抖音拦下了这次评论（要求验证或暂时受限），不等于整个登录已过期。原登录与草稿已保留，不会自动重发。可先打开网页版看看有没有验证提示，或歇几分钟再发。\"",
       "    @State private var message = \"Douyin chặn bình luận vì cần xác minh hoặc đang giới hạn tạm thời. Phiên đăng nhập và bản nháp vẫn được giữ. Bình luận sẽ không tự gửi lại. Hãy mở bản web để kiểm tra yêu cầu xác minh hoặc thử lại sau vài phút.\""
@@ -1305,6 +1362,16 @@
       "            .navigationTitle(sessionGone ? \"Cần đăng nhập lại\" : \"Xác minh và khôi phục bình luận\")"
     ],
     [
+      71,
+      "                    message = \"本机的抖音登录已经没了（被退出），评论发不出去。点「重新登录」登录后再发，草稿还在，不会自动重发。\"",
+      "                    message = \"Douyin đã đăng xuất trên thiết bị này. Chọn Đăng nhập lại rồi gửi bình luận. Bản nháp vẫn được giữ và sẽ không tự gửi.\""
+    ],
+    [
+      81,
+      "                    message = \"抖音把这次登录作废了：本机还留着登录记录，但抖音那边已是未登录，所以评论发不出去。点「重新登录」登录后再发，草稿还在，不会自动重发。\"",
+      "                    message = \"Douyin đã vô hiệu hóa phiên đăng nhập. Chọn Đăng nhập lại rồi gửi bình luận. Bản nháp vẫn được giữ và sẽ không tự gửi.\""
+    ],
+    [
       88,
       "                ToolbarItem(placement: .cancellationAction) { Button(\"保留草稿并关闭\") { dismiss() } }",
       "                ToolbarItem(placement: .cancellationAction) { Button(\"Giữ bản nháp và đóng\") { dismiss() } }"
@@ -1328,6 +1395,16 @@
       104,
       "            Text(\"会清理本机抖音 cookie 和网页存储，影响共享此登录的页面。评论草稿保留。此操作不发送评论。\")",
       "            Text(\"Xóa cookie Douyin và dữ liệu web trên máy, ảnh hưởng các trang cùng phiên đăng nhập. Bản nháp bình luận vẫn giữ. Thao tác này không gửi bình luận.\")"
+    ],
+    [
+      130,
+      "            message = \"已实际读取账号资料；这不代表评论权限已恢复。草稿保留，请先检查目标评论，不要连续重发。\"",
+      "            message = \"Đã đọc được hồ sơ nhưng chưa xác nhận quyền bình luận. Bản nháp vẫn được giữ. Hãy kiểm tra bình luận trước khi gửi lại.\""
+    ],
+    [
+      133,
+      "            message = \"未能核验账号资料；未自动清理登录。可保留会话检查网页验证，或明确选择清理后重新登录。\"",
+      "            message = \"Chưa xác minh được hồ sơ. Bạn có thể giữ phiên để kiểm tra xác minh trên web hoặc chủ động xóa phiên rồi đăng nhập lại.\""
     ]
   ],
   "DouDuo/DYSearchPresentation.swift": [
@@ -1980,6 +2057,11 @@
       157,
       "                Text(clearing ? \"正在清理…\" : \"清理缓存\")",
       "                Text(clearing ? \"Đang dọn…\" : \"Xóa bộ nhớ đệm\")"
+    ],
+    [
+      241,
+      "        case .images: \"消息预览\"",
+      "        case .images: \"Xem trước tin nhắn\""
     ]
   ],
   "DouDuo/DYStreakBadge.swift": [
@@ -2196,9 +2278,24 @@
       "            throw DYCommentUnconfirmed(message: \"Douyin báo thành công nhưng chưa trả mã bình luận. Hãy làm mới bình luận để kiểm tra\")"
     ],
     [
+      326,
+      "            throw DYError.bad(o.msg?.isEmpty == false ? o.msg! : \"评论被拒绝（\\(o.code ?? -1)），草稿已保留\")",
+      "            throw DYError.bad(o.msg?.isEmpty == false ? o.msg! : \"Bình luận bị từ chối (\\(o.code ?? -1)). Bản nháp vẫn được giữ\")"
+    ],
+    [
       338,
       "            throw DYCommentUnconfirmed(message: o.msg ?? \"结果未确认，可能已发出；先刷新评论区核对\")",
       "            throw DYCommentUnconfirmed(message: o.msg ?? \"Chưa xác nhận kết quả. Bình luận có thể đã gửi, hãy làm mới để kiểm tra\")"
+    ],
+    [
+      342,
+      "            throw DYError.bad(\"上一条评论还在发送，稍等再发；草稿已保留\")",
+      "            throw DYError.bad(\"Bình luận trước vẫn đang gửi. Hãy đợi rồi thử lại. Bản nháp vẫn được giữ\")"
+    ],
+    [
+      375,
+      "            throw DYError.bad(\"评论签名页尚未就绪，未发送；草稿已保留\")",
+      "            throw DYError.bad(\"Trang gửi bình luận chưa sẵn sàng. Bản nháp vẫn được giữ\")"
     ],
     [
       411,
@@ -2209,6 +2306,16 @@
       415,
       "            throw DYCommentUnconfirmed(message: \"回执无法识别，可能已发出；先刷新评论区核对\")",
       "            throw DYCommentUnconfirmed(message: \"Không nhận dạng được phản hồi. Bình luận có thể đã gửi, hãy làm mới để kiểm tra\")"
+    ],
+    [
+      421,
+      "            throw DYError.bad(\"评论签名页尚未就绪，未发送；草稿已保留\")",
+      "            throw DYError.bad(\"Trang gửi bình luận chưa sẵn sàng. Bản nháp vẫn được giữ\")"
+    ],
+    [
+      434,
+      "            throw DYError.bad(r.msg?.isEmpty == false ? r.msg! : \"评论被拒绝（\\(code)），草稿已保留\")",
+      "            throw DYError.bad(r.msg?.isEmpty == false ? r.msg! : \"Bình luận bị từ chối (\\(code)). Bản nháp vẫn được giữ\")"
     ],
     [
       460,
@@ -2249,6 +2356,11 @@
       1237,
       "                        .accessibilityLabel(showsPlayCount ? \"播放量 \\(a.stats.play.map(String.init) ?? \"未提供\")\" : \"点赞量 \\(a.stats.digg)\")",
       "                        .accessibilityLabel(showsPlayCount ? \"Lượt xem \\(a.stats.play.map(String.init) ?? \"Không rõ\")\" : \"Lượt thích \\(a.stats.digg)\")"
+    ],
+    [
+      1536,
+      "        else { show(\"这个离线视频无法播放\") }",
+      "        else { show(\"Không phát được video ngoại tuyến này\") }"
     ],
     [
       1587,
@@ -2708,6 +2820,11 @@
       "        case .live: \"Trực tiếp\""
     ],
     [
+      3046,
+      "    static let notice = \"已静音播放 · 在菜单里可取消静音\"",
+      "    static let notice = \"Đang phát tắt tiếng · Bật lại trong menu\""
+    ],
+    [
       3430,
       "            Tab(\"我的\", systemImage: \"person.crop.circle\", value: DYMainTab.mine) {",
       "            Tab(DYMainTab.mine.title, systemImage: \"person.crop.circle\", value: DYMainTab.mine) {"
@@ -3098,6 +3215,11 @@
       "            sendErr = \"Không dùng được ảnh này vì định dạng không hỗ trợ hoặc tệp quá lớn\""
     ],
     [
+      5699,
+      "    static let waitSignText = \"等待签名完成才可以发送评论\"",
+      "    static let waitSignText = \"Đang chuẩn bị gửi bình luận\""
+    ],
+    [
       5743,
       "            pending[localID]?.state = .failed(\"抖音拦下了这条（需要验证或暂时受限）\")",
       "            pending[localID]?.state = .failed(\"Douyin đã chặn bình luận vì cần xác minh hoặc đang giới hạn tạm thời\")"
@@ -3334,6 +3456,11 @@
       "                  let state = result[\"state\"] as? String else { return \"Chưa nhận xác nhận đã gửi. Tránh gửi lại nhiều lần\" }"
     ],
     [
+      85,
+      "            return result[\"message\"] as? String ?? \"直播发言尚未确认，输入内容已保留，请勿连续重发\"",
+      "            return result[\"message\"] as? String ?? \"Chưa xác nhận đã gửi. Nội dung vẫn được giữ. Tránh gửi lại nhiều lần\""
+    ],
+    [
       88,
       "            return \"直播网页执行失败，发言结果未确认，请勿连续重发\"",
       "            return \"Trang trực tiếp gặp lỗi và chưa xác nhận đã gửi. Tránh gửi lại nhiều lần\""
@@ -3349,6 +3476,11 @@
       222,
       "            self.playbackError = \"直播已结束或连接中断，可重试或上滑换台\"",
       "            self.playbackError = \"Buổi trực tiếp đã kết thúc hoặc mất kết nối. Thử lại hoặc vuốt lên để đổi phòng\""
+    ],
+    [
+      254,
+      "            error = rooms.isEmpty ? (zone == nil ? \"暂时没有直播\" : \"这个分类暂时没有直播\") : nil",
+      "            error = rooms.isEmpty ? (zone == nil ? \"Chưa có buổi trực tiếp\" : \"Danh mục này chưa có buổi trực tiếp\") : nil"
     ],
     [
       443,
@@ -3424,6 +3556,31 @@
       1719,
       "                Button(\"重试\") { Task { await model.loadFollowLive(bridge, refresh: true) } }",
       "                Button(\"Thử lại\") { Task { await model.loadFollowLive(bridge, refresh: true) } }"
+    ],
+    [
+      1730,
+      "        case .filtered: \"暂时没有可播放的线路\"",
+      "        case .filtered: \"Tạm thời chưa có nguồn phát\""
+    ],
+    [
+      1731,
+      "        case .requestFailed: \"关注直播加载失败\"",
+      "        case .requestFailed: \"Không tải được mục trực tiếp đang theo dõi\""
+    ],
+    [
+      1732,
+      "        case .decodeFailed, .unexpectedShape: \"直播数据无法解析\"",
+      "        case .decodeFailed, .unexpectedShape: \"Không đọc được dữ liệu phát trực tiếp\""
+    ],
+    [
+      1733,
+      "        case .nobodyLive, .rooms: \"关注的人现在没有在直播\"",
+      "        case .nobodyLive, .rooms: \"Chưa có người đang theo dõi nào phát trực tiếp\""
+    ],
+    [
+      1734,
+      "        case nil: \"正在查看关注的直播\"",
+      "        case nil: \"Đang tải các buổi trực tiếp đang theo dõi\""
     ],
     [
       1742,
@@ -3546,6 +3703,11 @@
       "                        .accessibilityLabel(\"Theo dõi \\(room.owner)\")"
     ],
     [
+      2146,
+      "        do { failure = try await bridge.followVideoAuthor(author) } catch { failure = \"关注失败：\" + error.localizedDescription }",
+      "        do { failure = try await bridge.followVideoAuthor(author) } catch { failure = \"Theo dõi thất bại: \" + error.localizedDescription }"
+    ],
+    [
       2157,
       "            Label(\"返回\", systemImage: \"chevron.backward\")",
       "            Label(\"Quay lại\", systemImage: \"chevron.backward\")"
@@ -3569,6 +3731,31 @@
       2666,
       "                    ProgressView(\"加载我的关注…\").tint(foreground)",
       "                    ProgressView(\"Đang tải danh sách theo dõi…\").tint(foreground)"
+    ],
+    [
+      2680,
+      "                    notice(\"关注的人现在没有在直播\", id: \"live.follow.empty\", action: \"刷新\") { model.reload(bridge, refresh: true) }",
+      "                    notice(\"Chưa có người đang theo dõi nào phát trực tiếp\", id: \"live.follow.empty\", action: \"Làm mới\") { model.reload(bridge, refresh: true) }"
+    ],
+    [
+      2682,
+      "                    notice(\"抖音未登录，登录后才能看到关注的直播\", id: \"live.follow.login\", action: \"网页版 / 登录\", actionID: \"live.follow.login.button\", onLogin)",
+      "                    notice(\"Đăng nhập Douyin để xem buổi trực tiếp của người bạn theo dõi\", id: \"live.follow.login\", action: \"Bản web / Đăng nhập\", actionID: \"live.follow.login.button\", onLogin)"
+    ],
+    [
+      2684,
+      "                    notice(\"我的关注加载失败\", id: \"live.follow.failed\", action: \"重试\") { model.reload(bridge, refresh: true) }",
+      "                    notice(\"Không tải được mục Đang theo dõi\", id: \"live.follow.failed\", action: \"Thử lại\") { model.reload(bridge, refresh: true) }"
+    ],
+    [
+      2686,
+      "                    notice(\"直播数据无法解析\", id: \"live.follow.decode\", action: \"重试\") { model.reload(bridge, refresh: true) }",
+      "                    notice(\"Không đọc được dữ liệu phát trực tiếp\", id: \"live.follow.decode\", action: \"Thử lại\") { model.reload(bridge, refresh: true) }"
+    ],
+    [
+      2688,
+      "                    notice(\"关注的人正在直播，但暂时没有可播放的线路\", id: \"live.follow.filtered\", action: \"重试\") { model.reload(bridge, refresh: true) }",
+      "                    notice(\"Có người bạn theo dõi đang phát trực tiếp nhưng chưa có nguồn phát\", id: \"live.follow.filtered\", action: \"Thử lại\") { model.reload(bridge, refresh: true) }"
     ],
     [
       2694,
@@ -3612,6 +3799,61 @@
     ]
   ],
   "DouDuo/DouyinMessages.swift": [
+    [
+      422,
+      "        case .all: \"全部\"",
+      "        case .all: \"Tất cả\""
+    ],
+    [
+      423,
+      "        case .comment: \"评论\"",
+      "        case .comment: \"Bình luận\""
+    ],
+    [
+      424,
+      "        case .digg: \"赞\"",
+      "        case .digg: \"Lượt thích\""
+    ],
+    [
+      425,
+      "        case .at: \"@我的\"",
+      "        case .at: \"Nhắc đến tôi\""
+    ],
+    [
+      426,
+      "        case .fans: \"粉丝\"",
+      "        case .fans: \"Người theo dõi\""
+    ],
+    [
+      427,
+      "        case .system: \"系统\"",
+      "        case .system: \"Hệ thống\""
+    ],
+    [
+      428,
+      "        case .recommend: \"推荐\"",
+      "        case .recommend: \"Đề xuất\""
+    ],
+    [
+      471,
+      "        case .interactive: \"互动消息\"",
+      "        case .interactive: \"Thông báo tương tác\""
+    ],
+    [
+      472,
+      "        case .fans: \"粉丝消息\"",
+      "        case .fans: \"Thông báo người theo dõi\""
+    ],
+    [
+      473,
+      "        case .system: \"系统通知\"",
+      "        case .system: \"Thông báo hệ thống\""
+    ],
+    [
+      474,
+      "        case .stranger: \"陌生人消息\"",
+      "        case .stranger: \"Tin nhắn từ người lạ\""
+    ],
     [
       503,
       "        case .all, .system: return \"全部互动\"",
@@ -3903,6 +4145,11 @@
       "        .accessibilityValue(badge > 0 ? \"\\(badge) chưa đọc\" : \"\")"
     ],
     [
+      2006,
+      "            replyErr = ok ? \"已核验账号资料；评论权限未确认，草稿已保留，请勿连续重发\" : \"未完成账号核验；原登录和草稿未自动清理\"",
+      "            replyErr = ok ? \"Đã xác minh hồ sơ nhưng chưa xác nhận quyền bình luận. Bản nháp vẫn được giữ. Tránh gửi lại nhiều lần\" : \"Chưa xác minh xong tài khoản. Phiên đăng nhập và bản nháp vẫn được giữ\""
+    ],
+    [
       2041,
       "            DYListPlayer(bridge: bridge, title: p.item.desc.isEmpty ? \"视频\" : p.item.desc, items: [p.item], start: 0,",
       "            DYListPlayer(bridge: bridge, title: p.item.desc.isEmpty ? \"Video\" : p.item.desc, items: [p.item], start: 0,"
@@ -3933,9 +4180,19 @@
       "            case true?: showToast(\"Đã trả lời và hiển thị trong bình luận\")"
     ],
     [
+      2219,
+      "                replyErr = \"抖音收下了，但这条回复在评论区里找不到（可能被折叠或仅自己可见）。可以点视频进评论区核对。\"",
+      "                replyErr = \"Douyin đã nhận phản hồi nhưng chưa tìm thấy trong bình luận. Có thể phản hồi đã bị thu gọn hoặc chỉ bạn thấy. Mở video để kiểm tra.\""
+    ],
+    [
       2221,
       "            case nil: showToast(\"已发出，评论区暂时核对不了\")",
       "            case nil: showToast(\"Đã gửi nhưng chưa kiểm tra được bình luận\")"
+    ],
+    [
+      2225,
+      "            replyErr = \"抖音拦下了这次回复（需要验证或暂时受限）；登录和草稿已保留，请选择恢复方式\"",
+      "            replyErr = \"Douyin đã chặn phản hồi vì cần xác minh hoặc đang giới hạn tạm thời. Phiên đăng nhập và bản nháp vẫn được giữ. Hãy chọn cách khôi phục\""
     ],
     [
       2252,
@@ -4058,6 +4315,16 @@
       "                Label(replied.contains(n.id) ? \"Đã trả lời\" : \"Trả lời\", systemImage: \"arrowshape.turn.up.left\")"
     ],
     [
+      3063,
+      "    @State private var status = \"正在读取陌生人消息…\"",
+      "    @State private var status = \"Đang tải tin nhắn từ người lạ…\""
+    ],
+    [
+      3117,
+      "        if rows.isEmpty { status = \"暂无陌生人消息\" }",
+      "        if rows.isEmpty { status = \"Chưa có tin nhắn từ người lạ\" }"
+    ],
+    [
       3194,
       "            result.append(.init(id: \"copy\", title: \"复制链接\", symbol: \"link\"))",
       "            result.append(.init(id: \"copy\", title: \"Sao chép liên kết\", symbol: \"link\"))"
@@ -4138,6 +4405,11 @@
       "                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"Đóng\") { showContacts = false } } }"
     ],
     [
+      3402,
+      "                    saveMessage = item.images.isEmpty ? \"视频已保存到相册\" : \"图集已保存到相册\"",
+      "                    saveMessage = item.images.isEmpty ? \"Đã lưu video vào thư viện ảnh\" : \"Đã lưu bộ ảnh vào thư viện ảnh\""
+    ],
+    [
       3437,
       "            .navigationTitle(\"转发给抖音朋友\")",
       "            .navigationTitle(\"Chuyển tiếp cho bạn bè Douyin\")"
@@ -4151,6 +4423,51 @@
       3444,
       "                    Button(model.fullPage ? \"返回分享\" : \"完整官网\") { model.toggleFullPage() }",
       "                    Button(model.fullPage ? \"Quay lại chia sẻ\" : \"Mở trang web đầy đủ\") { model.toggleFullPage() }"
+    ],
+    [
+      3547,
+      "        guard DYMessageCache.shared.accountScope == account else { message = \"登录账号已变化，尚未发送，请重新打开分享\"; return nil }",
+      "        guard DYMessageCache.shared.accountScope == account else { message = \"Tài khoản đã thay đổi. Chưa gửi nội dung. Hãy mở lại mục chia sẻ\"; return nil }"
+    ],
+    [
+      3564,
+      "        guard readyForSend else { message = loginRequired ? \"请先登录抖音，尚未发送\" : \"转发组件尚未就绪，尚未发送，请稍后重试\"; return nil }",
+      "        guard readyForSend else { message = loginRequired ? \"Hãy đăng nhập Douyin trước. Chưa gửi nội dung\" : \"Tính năng chia sẻ chưa sẵn sàng. Chưa gửi nội dung. Hãy thử lại sau\"; return nil }"
+    ],
+    [
+      3585,
+      "                message = \"发送未确认，请到抖音消息核对，勿重复发送\"",
+      "                message = \"Chưa xác nhận đã gửi. Hãy kiểm tra tin nhắn Douyin và tránh gửi trùng\""
+    ],
+    [
+      3587,
+      "            case \"note-rejected\": message = \"视频已分享，但捎句话未发送成功，请到消息中核对，勿重复分享\"",
+      "            case \"note-rejected\": message = \"Đã chia sẻ video nhưng chưa gửi được lời nhắn. Hãy kiểm tra tin nhắn và tránh chia sẻ trùng\""
+    ],
+    [
+      3588,
+      "            case \"note-unconfirmed\": message = \"视频已分享，捎句话发送结果未确认，请到消息中核对，勿重复分享\"",
+      "            case \"note-unconfirmed\": message = \"Đã chia sẻ video nhưng chưa xác nhận gửi lời nhắn. Hãy kiểm tra tin nhắn và tránh chia sẻ trùng\""
+    ],
+    [
+      3589,
+      "            case \"rejected\": message = \"抖音未接受本次转发，请到消息中核对\"",
+      "            case \"rejected\": message = \"Douyin chưa chấp nhận yêu cầu chia sẻ. Hãy kiểm tra tin nhắn\""
+    ],
+    [
+      3591,
+      "            default: message = \"发送未确认，请到抖音消息核对，勿重复发送\"",
+      "            default: message = \"Chưa xác nhận đã gửi. Hãy kiểm tra tin nhắn Douyin và tránh gửi trùng\""
+    ],
+    [
+      3596,
+      "            message = \"发送未确认，请到抖音消息核对，勿重复发送\"",
+      "            message = \"Chưa xác nhận đã gửi. Hãy kiểm tra tin nhắn Douyin và tránh gửi trùng\""
+    ],
+    [
+      3664,
+      "                            self.message = self.contacts.isEmpty ? \"登录抖音后显示可转发的朋友\" : \"已显示朋友缓存，登录抖音后可转发\"",
+      "                            self.message = self.contacts.isEmpty ? \"Đăng nhập Douyin để xem bạn bè có thể nhận chia sẻ\" : \"Đang hiển thị bạn bè đã lưu tạm. Đăng nhập Douyin để chia sẻ\""
     ],
     [
       4019,
@@ -4245,6 +4562,23 @@
       149,
       "        .accessibilityLabel(\"抖音菜单\")",
       "        .accessibilityLabel(\"Menu Douyin\")"
+    ]
+  ],
+  "DouDuo/FollowLiveLogic.swift": [
+    [
+      336,
+      "        case .unavailable: \"这个直播间暂时没有可播放的线路\"",
+      "        case .unavailable: \"Phòng này tạm thời chưa có nguồn phát\""
+    ],
+    [
+      337,
+      "        case .requestFailed: \"直播线路获取失败\"",
+      "        case .requestFailed: \"Không tải được nguồn phát trực tiếp\""
+    ],
+    [
+      338,
+      "        case .decodeFailed: \"直播数据无法解析\"",
+      "        case .decodeFailed: \"Không đọc được dữ liệu phát trực tiếp\""
     ]
   ],
   "DouDuo/ShortVideoPlayer.swift": [
