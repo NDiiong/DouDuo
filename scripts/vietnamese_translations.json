@@ -119,6 +119,11 @@
   ],
   "DouDuo/DYAppLogin.swift": [
     [
+      38,
+      "            .navigationTitle(page.needsWeb ? \"抖音安全验证\" : \"登录抖音\")",
+      "            .navigationTitle(page.needsWeb ? \"Xác minh bảo mật Douyin\" : \"Đăng nhập Douyin\")"
+    ],
+    [
       42,
       "                    Button(\"关闭\", systemImage: \"xmark\") { dismiss() }.accessibilityIdentifier(\"douyin.login.close\")",
       "                    Button(\"Đóng\", systemImage: \"xmark\") { dismiss() }.accessibilityIdentifier(\"douyin.login.close\")"
@@ -164,9 +169,19 @@
       "                TextField(\"Mã xác minh\", text: $code)"
     ],
     [
+      107,
+      "                Button(page.countdown > 0 ? \"\\(page.countdown)s 后重发\" : \"获取验证码\") {",
+      "                Button(page.countdown > 0 ? \"Gửi lại sau \\(page.countdown) giây\" : \"Lấy mã xác minh\") {"
+    ],
+    [
       120,
       "                Group { if page.busy { ProgressView() } else { Text(\"登录\").bold() } }",
       "                Group { if page.busy { ProgressView() } else { Text(\"Đăng nhập\").bold() } }"
+    ],
+    [
+      136,
+      "                Text(page.askScan ? \"抖音要求扫码确认\" : (page.qrStatus ?? \"用另一台手机扫码登录\"))",
+      "                Text(page.askScan ? \"Douyin yêu cầu quét mã để xác nhận\" : (page.qrStatus ?? \"Dùng điện thoại khác quét mã để đăng nhập\"))"
     ],
     [
       140,
@@ -264,6 +279,16 @@
       66,
       "                    Text(\"直播中\")",
       "                    Text(\"Đang phát trực tiếp\")"
+    ],
+    [
+      73,
+      "                    Text(live.title.isEmpty ? \"\\(live.owner) 正在直播\" : live.title)",
+      "                    Text(live.title.isEmpty ? \"\\(live.owner) đang phát trực tiếp\" : live.title)"
+    ],
+    [
+      119,
+      "                Text(failed ? \"直播加载失败，点击进入直播间\" : (live.viewers.isEmpty ? \"点击进入直播间\" : \"点击进入直播间 · \\(live.viewers)人在看\"))",
+      "                Text(failed ? \"Không tải được luồng. Chạm để vào phòng trực tiếp\" : (live.viewers.isEmpty ? \"Chạm để vào phòng trực tiếp\" : \"Chạm để vào phòng · \\(live.viewers) người đang xem\"))"
     ]
   ],
   "DouDuo/DYForwardCompose.swift": [
@@ -281,6 +306,11 @@
       33,
       "                .accessibilityLabel(\"待分享作品\")",
       "                .accessibilityLabel(\"Nội dung chờ chia sẻ\")"
+    ],
+    [
+      42,
+      "                    Text(requiresVerification ? \"请先到消息中核对\" : sending ? \"正在发送…\" : \"确认发送\")",
+      "                    Text(requiresVerification ? \"Hãy kiểm tra trong Tin nhắn trước\" : sending ? \"Đang gửi…\" : \"Xác nhận gửi\")"
     ]
   ],
   "DouDuo/DYForwardFeedback.swift": [
@@ -369,6 +399,11 @@
       49,
       "                    Section(\"当前视频的标签（点一下加为关键词）\") {",
       "                    Section(\"Thẻ của video hiện tại (nhấn để thêm từ khóa)\") {"
+    ],
+    [
+      62,
+      "                                    .accessibilityLabel(filter.contains(tag) ? \"已屏蔽 #\" + tag : \"屏蔽 #\" + tag)",
+      "                                    .accessibilityLabel(filter.contains(tag) ? \"Đã chặn #\" + tag : \"Chặn #\" + tag)"
     ],
     [
       74,
@@ -598,6 +633,21 @@
       "                    ToolbarItem(placement: .cancellationAction) { Button(\"Đóng\") { dismiss() } }"
     ],
     [
+      356,
+      "                        Button(managing ? \"完成\" : \"管理\") { managing.toggle(); picked = [] }",
+      "                        Button(managing ? \"Xong\" : \"Quản lý\") { managing.toggle(); picked = [] }"
+    ],
+    [
+      370,
+      "                        Button(managing ? \"完成\" : \"管理\") { managing.toggle(); picked = [] }",
+      "                        Button(managing ? \"Xong\" : \"Quản lý\") { managing.toggle(); picked = [] }"
+    ],
+    [
+      390,
+      "                                Text([m.author, m.episodes > 0 ? \"更新至第 \\(m.episodes) 集\" : nil].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: \" · \"))",
+      "                                Text([m.author, m.episodes > 0 ? \"Đã cập nhật đến tập \\(m.episodes)\" : nil].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: \" · \"))"
+    ],
+    [
       405,
       "            .navigationTitle(\"收藏的\\(noun)\")",
       "            .navigationTitle(\"\\(noun) đã lưu\")"
@@ -678,6 +728,11 @@
       "                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"Quay lại\", systemImage: \"chevron.backward\") { dismiss() } } }"
     ],
     [
+      575,
+      "                            Text(u.name.isEmpty ? \"抖音用户\" : u.name).font(.subheadline)",
+      "                            Text(u.name.isEmpty ? \"Người dùng Douyin\" : u.name).font(.subheadline)"
+    ],
+    [
       587,
       "            .navigationTitle(\"赞了作品的人\")",
       "            .navigationTitle(\"Người đã thích video\")"
@@ -686,6 +741,11 @@
       589,
       "            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"关闭\") { dismiss() } } }",
       "            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"Đóng\") { dismiss() } } }"
+    ],
+    [
+      638,
+      "                        Text(done ?? \"收藏成功\").font(.subheadline.weight(.medium))",
+      "                        Text(done ?? \"Đã lưu\").font(.subheadline.weight(.medium))"
     ],
     [
       642,
@@ -786,6 +846,11 @@
       "                Text(\"Chỉ tự tải qua Wi-Fi để đủ số lượng đã chọn.\")"
     ],
     [
+      51,
+      "                    Button(downloads.removing ? \"正在删除…\" : \"删除全部离线视频\", role: .destructive) {",
+      "                    Button(downloads.removing ? \"Đang xóa…\" : \"Xóa tất cả video ngoại tuyến\", role: .destructive) {"
+    ],
+    [
       59,
       "                            Text(\"预计清理时间 \\(DYFormat.dateTime(deadline))\")",
       "                            Text(\"Dự kiến dọn dẹp lúc \\(DYFormat.dateTime(deadline))\")"
@@ -859,6 +924,11 @@
       133,
       "        .accessibilityLabel(\"离线视频\")",
       "        .accessibilityLabel(\"Video ngoại tuyến\")"
+    ],
+    [
+      182,
+      "            .accessibilityLabel(downloading ? \"停止下载\" : downloadButtonText)",
+      "            .accessibilityLabel(downloading ? \"Dừng tải\" : downloadButtonText)"
     ]
   ],
   "DouDuo/DYOfflineDownloads.swift": [
@@ -983,6 +1053,11 @@
       "                    Text(\"Chỉ xóa dữ liệu đăng nhập web dùng chung khi bạn xác nhận; các trang khác có thể bị đăng xuất, bản nháp ở đây vẫn được giữ.\")"
     ],
     [
+      67,
+      "            .navigationTitle(sessionGone ? \"需要重新登录\" : \"评论验证与恢复\")",
+      "            .navigationTitle(sessionGone ? \"Cần đăng nhập lại\" : \"Xác minh và khôi phục bình luận\")"
+    ],
+    [
       88,
       "                ToolbarItem(placement: .cancellationAction) { Button(\"保留草稿并关闭\") { dismiss() } }",
       "                ToolbarItem(placement: .cancellationAction) { Button(\"Giữ bản nháp và đóng\") { dismiss() } }"
@@ -1018,6 +1093,11 @@
       144,
       "        Button(\"返回\", systemImage: \"chevron.backward\", action: onBack)",
       "        Button(\"Quay lại\", systemImage: \"chevron.backward\", action: onBack)"
+    ],
+    [
+      203,
+      "        .accessibilityLabel(\"\\(rank > 0 ? \"第\\(rank)名\" : \"置顶\")，\\(item.word)\")",
+      "        .accessibilityLabel(\"\\(rank > 0 ? \"Hạng \\(rank)\" : \"Được ghim\"), \\(item.word)\")"
     ]
   ],
   "DouDuo/DYSessionGuard.swift": [
@@ -1633,6 +1713,16 @@
       104,
       "                Text(\"部分目录无法读取，当前仅显示已统计的占用。\")",
       "                Text(\"Không đọc được một số thư mục. Chỉ hiển thị dung lượng đã thống kê.\")"
+    ],
+    [
+      143,
+      "                    Text(cleanupSucceeded ? \"缓存已清理\" : \"部分缓存未能清理，请重试。\")",
+      "                    Text(cleanupSucceeded ? \"Đã dọn bộ nhớ đệm\" : \"Chưa dọn được một phần bộ nhớ đệm. Hãy thử lại.\")"
+    ],
+    [
+      157,
+      "                Text(clearing ? \"正在清理…\" : \"清理缓存\")",
+      "                Text(clearing ? \"Đang dọn…\" : \"Xóa bộ nhớ đệm\")"
     ]
   ],
   "DouDuo/DYStreakBadge.swift": [
@@ -1725,6 +1815,11 @@
       "                            Label(\"Tốc độ phát\", systemImage: \"speedometer\")"
     ],
     [
+      75,
+      "                                    .accessibilityLabel(rate == 1 ? \"正常速度\" : \"\\(rate.formatted()) 倍速\")",
+      "                                    .accessibilityLabel(rate == 1 ? \"Tốc độ bình thường\" : \"Tốc độ \\(rate.formatted())×\")"
+    ],
+    [
       84,
       "                            Button(\"发弹幕\", systemImage: \"text.bubble\") {",
       "                            Button(\"Gửi bình luận chạy\", systemImage: \"text.bubble\") {"
@@ -1740,6 +1835,16 @@
       177,
       "            .accessibilityLabel(\"关闭简介\")",
       "            .accessibilityLabel(\"Đóng giới thiệu\")"
+    ],
+    [
+      193,
+      "                Text(isFollowed ? \"已关注\" : \"关注\")",
+      "                Text(isFollowed ? \"Đang theo dõi\" : \"Đang theo dõi\")"
+    ],
+    [
+      315,
+      "                    Button(expanded ? \"收起\" : \"展开\") { withAnimation(.snappy) { expanded.toggle() } }",
+      "                    Button(expanded ? \"Thu gọn\" : \"Mở rộng\") { withAnimation(.snappy) { expanded.toggle() } }"
     ]
   ],
   "DouDuo/DouyinExtras.swift": [
@@ -1829,6 +1934,11 @@
       "                    Text(\"Vừa xem\")"
     ],
     [
+      1237,
+      "                        .accessibilityLabel(showsPlayCount ? \"播放量 \\(a.stats.play.map(String.init) ?? \"未提供\")\" : \"点赞量 \\(a.stats.digg)\")",
+      "                        .accessibilityLabel(showsPlayCount ? \"Lượt xem \\(a.stats.play.map(String.init) ?? \"Không rõ\")\" : \"Lượt thích \\(a.stats.digg)\")"
+    ],
+    [
       1718,
       "                    TextField(\"\", text: $state.keyword, prompt: Text(\"搜索视频\").foregroundStyle(Color.primary.opacity(0.45)))",
       "                    TextField(\"\", text: $state.keyword, prompt: Text(\"Tìm video\").foregroundStyle(Color.primary.opacity(0.45)))"
@@ -1862,6 +1972,11 @@
       1832,
       "            Text(\"抖音热搜\").font(.subheadline.weight(.semibold)).foregroundStyle(Color.primary)",
       "            Text(\"Xu hướng Douyin\").font(.subheadline.weight(.semibold)).foregroundStyle(Color.primary)"
+    ],
+    [
+      1976,
+      "                .navigationTitle(user?.name ?? \"我的\")",
+      "                .navigationTitle(user?.name ?? \"Cá nhân\")"
     ],
     [
       1981,
@@ -1902,6 +2017,11 @@
       2119,
       "                            Button(\"管理\", systemImage: \"checklist\") { managing = true; picked = []; manageMsg = nil }",
       "                            Button(\"Quản lý\", systemImage: \"checklist\") { managing = true; picked = []; manageMsg = nil }"
+    ],
+    [
+      2124,
+      "                        Button(clearingHistory ? \"清空中…\" : \"清空历史\", systemImage: \"trash\") { confirmClearHistory = true }",
+      "                        Button(clearingHistory ? \"Đang xóa…\" : \"Xóa lịch sử\", systemImage: \"trash\") { confirmClearHistory = true }"
     ],
     [
       2210,
@@ -2009,14 +2129,34 @@
       "                Button(\"Quay lại\", systemImage: \"chevron.backward\", action: close)"
     ],
     [
+      2597,
+      "            Button(blocked ? \"解除拉黑\" : \"拉黑\", role: blocked ? nil : .destructive) { Task { await toggleBlock() } }",
+      "            Button(blocked ? \"Bỏ chặn\" : \"Chặn\", role: blocked ? nil : .destructive) { Task { await toggleBlock() } }"
+    ],
+    [
       2598,
       "            Button(\"取消\", role: .cancel) {}",
       "            Button(\"Hủy\", role: .cancel) {}"
     ],
     [
+      2600,
+      "            Text(blocked ? \"解除拉黑后，对方可以搜索到你，可以给你发私信\" : \"拉黑后，对方将无法搜索到你，也不能给你发私信\")",
+      "            Text(blocked ? \"Sau khi bỏ chặn, người này có thể tìm và nhắn tin cho bạn\" : \"Sau khi chặn, người này sẽ không thể tìm hoặc nhắn tin cho bạn\")"
+    ],
+    [
+      2664,
+      "            Button(blocked ? \"解除拉黑\" : \"拉黑\", systemImage: blocked ? \"hand.raised.slash\" : \"hand.raised\") { confirmBlock = true }",
+      "            Button(blocked ? \"Bỏ chặn\" : \"Chặn\", systemImage: blocked ? \"hand.raised.slash\" : \"hand.raised\") { confirmBlock = true }"
+    ],
+    [
       2670,
       "        .accessibilityLabel(\"更多\")",
       "        .accessibilityLabel(\"Thêm\")"
+    ],
+    [
+      2703,
+      "        Button(followBusy ? \"处理中\" : (followed ? \"已关注\" : \"关注\"),",
+      "        Button(followBusy ? \"Đang xử lý\" : (followed ? \"Đang theo dõi\" : \"Đang theo dõi\"),"
     ],
     [
       2822,
@@ -2037,6 +2177,21 @@
       2836,
       "                        Text(\"关注的人还没有新作品\").font(.footnote).foregroundStyle(.secondary)",
       "                        Text(\"Người bạn theo dõi chưa có video mới\").font(.footnote).foregroundStyle(.secondary)"
+    ],
+    [
+      2918,
+      "            onToast(\"点赞失败\")",
+      "            onToast(\"Không thích được\")"
+    ],
+    [
+      2928,
+      "                if want { DYCollectPrompt.shared.show(id, owner: .feed) } else { onToast(\"已取消收藏\") }",
+      "                if want { DYCollectPrompt.shared.show(id, owner: .feed) } else { onToast(\"Đã bỏ lưu\") }"
+    ],
+    [
+      2932,
+      "            onToast(\"收藏失败\")",
+      "            onToast(\"Không lưu được\")"
     ]
   ],
   "DouDuo/DouyinFeedView.swift": [
@@ -2069,6 +2224,11 @@
       2670,
       "                            Button(\"打开网页版\") { web = DYWebTarget(url: DouyinWeb.home) }",
       "                            Button(\"Mở phiên bản web\") { web = DYWebTarget(url: DouyinWeb.home) }"
+    ],
+    [
+      2675,
+      "                        Text(bridge.ready ? \"加载推荐…\" : \"连接抖音…\").font(.footnote)",
+      "                        Text(bridge.ready ? \"Đang tải đề xuất…\" : \"Đang kết nối với Douyin…\").font(.footnote)"
     ],
     [
       2839,
@@ -2104,6 +2264,11 @@
       3884,
       "                            Button(\"打开网页版\") { web = DYWebTarget(url: DouyinWeb.home) }",
       "                            Button(\"Mở phiên bản web\") { web = DYWebTarget(url: DouyinWeb.home) }"
+    ],
+    [
+      3889,
+      "                        Text(bridge.ready ? \"加载推荐…\" : \"连接抖音…\").font(.footnote)",
+      "                        Text(bridge.ready ? \"Đang tải đề xuất…\" : \"Đang kết nối với Douyin…\").font(.footnote)"
     ],
     [
       3958,
@@ -2176,6 +2341,11 @@
       "                    Button(\"Không quan tâm\", systemImage: \"hand.thumbsdown\") { onDislike() }"
     ],
     [
+      4376,
+      "                    Label(saving ? \"保存中…\" : \"下载\", systemImage: \"arrow.down.to.line\")",
+      "                    Label(saving ? \"Đang lưu…\" : \"Tải xuống\", systemImage: \"arrow.down.to.line\")"
+    ],
+    [
       4390,
       "                    Picker(\"倍速\", selection: Binding(",
       "                    Picker(\"Tốc độ phát\", selection: Binding("
@@ -2246,6 +2416,16 @@
       "        } catch { onToast?(\"Theo dõi thất bại: \" + error.localizedDescription) }"
     ],
     [
+      4848,
+      "        .accessibilityLabel((id == \"douyin.like\" ? \"点赞\" : id == \"douyin.comments\" ? \"评论\" : id == \"douyin.collect\" ? \"收藏\" : \"分享\") + \"，\" + text)",
+      "        .accessibilityLabel((id == \"douyin.like\" ? \"Thích\" : id == \"douyin.comments\" ? \"Bình luận\" : id == \"douyin.collect\" ? \"Đã lưu\" : \"Chia sẻ\") + \"，\" + text)"
+    ],
+    [
+      5059,
+      "        Text(total > 0 ? \"\\(DYFormat.count(total)) 条评论\" : \"评论\")",
+      "        Text(total > 0 ? \"\\(DYFormat.count(total)) bình luận\" : \"Bình luận\")"
+    ],
+    [
       5075,
       "            .accessibilityLabel(\"关闭评论\")",
       "            .accessibilityLabel(\"Đóng bình luận\")"
@@ -2254,6 +2434,11 @@
       5083,
       "                Text(\"相关搜索\").font(.caption).foregroundStyle(.themeTextSecondary)",
       "                Text(\"Tìm kiếm liên quan\").font(.caption).foregroundStyle(.themeTextSecondary)"
+    ],
+    [
+      5157,
+      "                Text(total > 0 ? \"\\(DYFormat.count(total)) 条评论\" : \"评论\").font(.subheadline.weight(.semibold))",
+      "                Text(total > 0 ? \"\\(DYFormat.count(total)) bình luận\" : \"Bình luận\").font(.subheadline.weight(.semibold))"
     ],
     [
       5176,
@@ -2299,6 +2484,11 @@
       5469,
       "                .accessibilityLabel(\"添加图片\")",
       "                .accessibilityLabel(\"Thêm ảnh\")"
+    ],
+    [
+      5475,
+      "                TextField(replyTo == nil ? \"说点什么…\" : \"回复 \\(replyTo!.name)\", text: $draft, axis: .vertical)",
+      "                TextField(replyTo == nil ? \"Viết gì đó…\" : \"Trả lời \\(replyTo!.name)\", text: $draft, axis: .vertical)"
     ],
     [
       5488,
@@ -2356,6 +2546,11 @@
       "                    Text(\"Đang tải bạn bè…\").font(.caption2).foregroundStyle(.themeTextSecondary)"
     ],
     [
+      5584,
+      "                Text(atError ?? \"没有可 @ 的人\").font(.caption2).foregroundStyle(.themeTextSecondary)",
+      "                Text(atError ?? \"Không có ai để nhắc đến\").font(.caption2).foregroundStyle(.themeTextSecondary)"
+    ],
+    [
       5792,
       "                Text(\"发送中…\").foregroundStyle(.themeTextSecondary)",
       "                Text(\"Đang gửi…\").foregroundStyle(.themeTextSecondary)"
@@ -2391,6 +2586,11 @@
       "                Button(\"Xóa\", role: .destructive) { removeLocal(id) }"
     ],
     [
+      5827,
+      "                Button(translated[c.id] == nil ? \"翻译\" : \"查看原文\", systemImage: \"character.bubble\") {",
+      "                Button(translated[c.id] == nil ? \"Dịch\" : \"Xem bản gốc\", systemImage: \"character.bubble\") {"
+    ],
+    [
       5831,
       "                Button(\"复制\", systemImage: \"doc.on.doc\") { UIPasteboard.general.string = c.text }",
       "                Button(\"Sao chép\", systemImage: \"doc.on.doc\") { UIPasteboard.general.string = c.text }"
@@ -2409,6 +2609,11 @@
       5960,
       "                    Text(\"回复加载失败，点此重试\").font(.caption).foregroundStyle(.themeTextSecondary)",
       "                    Text(\"Không tải được trả lời, nhấn để thử lại\").font(.caption).foregroundStyle(.themeTextSecondary)"
+    ],
+    [
+      5968,
+      "                        Text(replies[c.id] == nil ? \"展开 \\(c.replies) 条回复\" : \"展开更多回复\")",
+      "                        Text(replies[c.id] == nil ? \"Mở \\(c.replies) phản hồi\" : \"Mở thêm phản hồi\")"
     ]
   ],
   "DouDuo/DouyinForwardPanel.swift": [
@@ -2477,6 +2682,16 @@
   ],
   "DouDuo/DouyinLiveRoom.swift": [
     [
+      1422,
+      "            Text(restoring ? \"分屏\" : \"整屏\")",
+      "            Text(restoring ? \"Chia màn hình\" : \"Toàn màn hình\")"
+    ],
+    [
+      1488,
+      "            .accessibilityLabel(showDiscover ? \"收起\" : \"发现更多\")",
+      "            .accessibilityLabel(showDiscover ? \"Thu gọn\" : \"Khám phá thêm\")"
+    ],
+    [
       1501,
       "                    Text(\"关闭\")",
       "                    Text(\"Đóng\")"
@@ -2532,6 +2747,16 @@
       "                Text(\"Đang kết nối livestream…\").font(.footnote)"
     ],
     [
+      1865,
+      "                TextField(chat.composerReady ? \"说点什么…\" : \"评论区连接中…\", text: $draft)",
+      "                TextField(chat.composerReady ? \"Viết gì đó…\" : \"Đang kết nối bình luận…\", text: $draft)"
+    ],
+    [
+      1872,
+      "                        if sending { ProgressView() } else { Text(chat.composerReady ? \"发送\" : \"连接中\").font(.subheadline.weight(.semibold)) }",
+      "                        if sending { ProgressView() } else { Text(chat.composerReady ? \"Gửi\" : \"Đang kết nối\").font(.subheadline.weight(.semibold)) }"
+    ],
+    [
       1955,
       "                            Button(\"重试\", action: model.retry).buttonStyle(.bordered)",
       "                            Button(\"Thử lại\", action: model.retry).buttonStyle(.bordered)"
@@ -2572,6 +2797,11 @@
       "                                            Text(\"Tự động\").tag(\"\")"
     ],
     [
+      2007,
+      "                                    Button(splitRole == .restoreSplit ? \"分屏\" : \"整屏\",",
+      "                                    Button(splitRole == .restoreSplit ? \"Chia màn hình\" : \"Toàn màn hình\","
+    ],
+    [
       2012,
       "                                    Button(\"重新连接\", systemImage: \"arrow.clockwise\", action: model.retry)",
       "                                    Button(\"Kết nối lại\", systemImage: \"arrow.clockwise\", action: model.retry)"
@@ -2582,9 +2812,19 @@
       "                                    Button(\"Tương tác chính thức (quà tặng)\", systemImage: \"safari\") { onWeb(room.webURL) }"
     ],
     [
+      2041,
+      "                                Text(room.viewers.isEmpty ? \"点击进入直播间\" : \"点击进入直播间 · \\(room.viewers)人在看\")",
+      "                                Text(room.viewers.isEmpty ? \"Chạm để vào phòng trực tiếp\" : \"Chạm để vào phòng · \\(room.viewers) người đang xem\")"
+    ],
+    [
       2052,
       "                            Text(\"直播中\")",
       "                            Text(\"Đang phát trực tiếp\")"
+    ],
+    [
+      2057,
+      "                            Text(room.title.isEmpty ? \"\\(room.owner) 正在直播\" : room.title)",
+      "                            Text(room.title.isEmpty ? \"\\(room.owner) đang phát trực tiếp\" : room.title)"
     ],
     [
       2105,
@@ -2610,6 +2850,11 @@
       2157,
       "            Label(\"返回\", systemImage: \"chevron.backward\")",
       "            Label(\"Quay lại\", systemImage: \"chevron.backward\")"
+    ],
+    [
+      2444,
+      "                                Text(zone?.name ?? \"推荐直播\").font(.subheadline)",
+      "                                Text(zone?.name ?? \"Trực tiếp đề xuất\").font(.subheadline)"
     ],
     [
       2454,
@@ -2640,6 +2885,11 @@
       2703,
       "                    Button(\"完成\") { dismiss() }.accessibilityIdentifier(\"live.follow.close\")",
       "                    Button(\"Xong\") { dismiss() }.accessibilityIdentifier(\"live.follow.close\")"
+    ],
+    [
+      2734,
+      "                                Text(room.owner.isEmpty ? \"未命名主播\" : room.owner)",
+      "                                Text(room.owner.isEmpty ? \"Chủ phòng chưa có tên\" : room.owner)"
     ],
     [
       2739,
@@ -2687,6 +2937,11 @@
       721,
       "            Button(\"好\", role: .cancel) { actionError = nil }",
       "            Button(\"OK\", role: .cancel) { actionError = nil }"
+    ],
+    [
+      722,
+      "        } message: { Text(actionError ?? \"请稍后重试\") }",
+      "        } message: { Text(actionError ?? \"Vui lòng thử lại sau\") }"
     ],
     [
       723,
@@ -2789,6 +3044,11 @@
       "                    .accessibilityHint(\"Chỉ ẩn khỏi danh sách trên máy của tài khoản này. Sẽ hiện lại khi có tin nhắn mới; lịch sử chat vẫn được giữ.\")"
     ],
     [
+      1208,
+      "                    Button(row.isPinned == true ? \"取消置顶\" : \"置顶\", systemImage: row.isPinned == true ? \"pin.slash\" : \"pin.fill\") {",
+      "                    Button(row.isPinned == true ? \"Bỏ ghim\" : \"Ghim\", systemImage: row.isPinned == true ? \"pin.slash\" : \"pin.fill\") {"
+    ],
+    [
       1217,
       "                Button(\"加载更多会话\") {",
       "                Button(\"Tải thêm cuộc trò chuyện\") {"
@@ -2869,9 +3129,19 @@
       "        Button(\"Quay lại\", systemImage: \"chevron.backward\", action: backFromMessage)"
     ],
     [
+      1847,
+      "        .accessibilityLabel(route == .system ? \"系统消息\" : route.title)",
+      "        .accessibilityLabel(route == .system ? \"Tin nhắn hệ thống\" : route.title)"
+    ],
+    [
+      1866,
+      "                Text(route == .system ? \"系统消息\" : route.title).font(.caption2)",
+      "                Text(route == .system ? \"Tin nhắn hệ thống\" : route.title).font(.caption2)"
+    ],
+    [
       2128,
       "                    Text(\"回复 @\\(n.name.isEmpty ? \"抖音用户\" : n.name)\").font(.caption).foregroundStyle(Color.primary.opacity(0.6)).lineLimit(1)",
-      "                    Text(\"Trả lời @\\(n.name.isEmpty ? \"抖音用户\" : n.name)\").font(.caption).foregroundStyle(Color.primary.opacity(0.6)).lineLimit(1)"
+      "                    Text(\"Trả lời @\\(n.name.isEmpty ? \"Người dùng Douyin\" : n.name)\").font(.caption).foregroundStyle(Color.primary.opacity(0.6)).lineLimit(1)"
     ],
     [
       2146,
@@ -2904,6 +3174,11 @@
       "                                    Label(\"Xem tất cả \\(n.diggCount ?? 0) lượt thích\", systemImage: \"person.2\")"
     ],
     [
+      2327,
+      "                    Text(n.name.isEmpty ? \"抖音用户\" : n.name)",
+      "                    Text(n.name.isEmpty ? \"Người dùng Douyin\" : n.name)"
+    ],
+    [
       2424,
       "                Text(\"已通过\").font(.caption).foregroundStyle(.secondary)",
       "                Text(\"Đã chấp nhận\").font(.caption).foregroundStyle(.secondary)"
@@ -2917,6 +3192,16 @@
       2440,
       "                Button(\"拒绝\") {",
       "                Button(\"Từ chối\") {"
+    ],
+    [
+      2468,
+      "                    Label(open ? \"收起\" : \"展开\", systemImage: open ? \"chevron.up\" : \"chevron.down\")",
+      "                    Label(open ? \"Thu gọn\" : \"Mở rộng\", systemImage: open ? \"chevron.up\" : \"chevron.down\")"
+    ],
+    [
+      2477,
+      "                Label(replied.contains(n.id) ? \"已回复\" : \"回复\", systemImage: \"arrowshape.turn.up.left\")",
+      "                Label(replied.contains(n.id) ? \"Đã trả lời\" : \"Trả lời\", systemImage: \"arrowshape.turn.up.left\")"
     ],
     [
       3194,
@@ -2974,6 +3259,11 @@
       "                        Text(\"Không thấy “\\(query)” trong danh sách bạn bè đã tải\").font(.footnote).foregroundStyle(.themeTextSecondary)"
     ],
     [
+      3332,
+      "                .navigationTitle(groupsOnly ? \"选择群聊\" : \"选择朋友\")",
+      "                .navigationTitle(groupsOnly ? \"Chọn nhóm chat\" : \"Chọn bạn bè\")"
+    ],
+    [
       3333,
       "                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"关闭\") { showContacts = false } } }",
       "                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(\"Đóng\") { showContacts = false } } }"
@@ -2987,6 +3277,11 @@
       3441,
       "                    Button(\"关闭\") { dismiss() }.accessibilityIdentifier(\"douyin.forward.close\")",
       "                    Button(\"Đóng\") { dismiss() }.accessibilityIdentifier(\"douyin.forward.close\")"
+    ],
+    [
+      3444,
+      "                    Button(model.fullPage ? \"返回分享\" : \"完整官网\") { model.toggleFullPage() }",
+      "                    Button(model.fullPage ? \"Quay lại chia sẻ\" : \"Mở trang web đầy đủ\") { model.toggleFullPage() }"
     ],
     [
       4019,
@@ -3006,6 +3301,11 @@
       "                        Text(\"Đã xem hết\").font(.caption).foregroundStyle(Color.primary.opacity(0.5)).padding(.vertical, 20)"
     ],
     [
+      213,
+      "                        Text(kind == .following ? \"还没有关注任何人\" : \"还没有粉丝\").font(.footnote)",
+      "                        Text(kind == .following ? \"Chưa theo dõi ai\" : \"Chưa có người theo dõi\").font(.footnote)"
+    ],
+    [
       222,
       "        .alert(\"移除这位粉丝？\", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } })) {",
       "        .alert(\"Xóa người theo dõi này?\", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } })) {"
@@ -3021,6 +3321,11 @@
       "            Button(\"Hủy\", role: .cancel) { removing = nil }"
     ],
     [
+      228,
+      "        } message: { Text(\"\\(removing?.name ?? \"对方\") 将不再关注你。\") }",
+      "        } message: { Text(\"\\(removing?.name ?? \"Người này\") sẽ ngừng theo dõi bạn.\") }"
+    ],
+    [
       229,
       "        .alert(\"没移除成\", isPresented: Binding(get: { removeMsg != nil }, set: { if !$0 { removeMsg = nil } })) {",
       "        .alert(\"Không xóa được\", isPresented: Binding(get: { removeMsg != nil }, set: { if !$0 { removeMsg = nil } })) {"
@@ -3029,6 +3334,11 @@
       230,
       "            Button(\"好\", role: .cancel) { removeMsg = nil }",
       "            Button(\"OK\", role: .cancel) { removeMsg = nil }"
+    ],
+    [
+      231,
+      "        } message: { Text(removeMsg ?? \"请稍后重试\") }",
+      "        } message: { Text(removeMsg ?? \"Vui lòng thử lại sau\") }"
     ]
   ],
   "DouDuo/DouyinWebView.swift": [
